@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/placeofperformance.json",
+  "title": "PlaceOfPerformance",
+  "description": "Geographic location for award performance",
+  "type": "object",
+  "properties": {
+    "country_name": {
+      "description": "Country name",
+      "type": "string",
+      "example": "Ghana"
+    },
+    "country_code": {
+      "description": "ISO country code",
+      "type": "string",
+      "example": "GH"
+    },
+    "city_name": {
+      "description": "City name",
+      "type": "string",
+      "example": "Accra"
+    }
+  }
+}

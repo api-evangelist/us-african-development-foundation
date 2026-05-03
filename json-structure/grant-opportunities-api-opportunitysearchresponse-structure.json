@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/opportunitysearchresponse.json",
+  "title": "OpportunitySearchResponse",
+  "description": "Search results for USADF grant opportunities",
+  "type": "record",
+  "fields": [
+    {
+      "name": "total",
+      "description": "Total matching opportunities",
+      "type": "int32"
+    },
+    {
+      "name": "rows",
+      "description": "Page size",
+      "type": "int32"
+    },
+    {
+      "name": "startRecordNum",
+      "description": "Starting record number",
+      "type": "int32"
+    },
+    {
+      "name": "hitCount",
+      "description": "Number of results returned",
+      "type": "int32"
+    },
+    {
+      "name": "oppHits",
+      "description": "List of matching opportunities",
+      "type": {
+        "type": "array",
+        "items": "opportunity"
+      }
+    }
+  ]
+}

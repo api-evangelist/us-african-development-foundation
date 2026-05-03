@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/apierror.json",
+  "title": "APIError",
+  "description": "API error response",
+  "type": "object",
+  "properties": {
+    "errorCode": {
+      "description": "Error code",
+      "type": "string",
+      "example": "NOT_FOUND"
+    },
+    "errorMessage": {
+      "description": "Human-readable error message",
+      "type": "string",
+      "example": "Grant opportunity not found."
+    }
+  }
+}

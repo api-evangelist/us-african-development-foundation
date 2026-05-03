@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/apierror.json",
+  "title": "APIError",
+  "description": "API error response",
+  "type": "object",
+  "properties": {
+    "detail": {
+      "description": "Error detail message",
+      "type": "string",
+      "example": "Award not found."
+    },
+    "status": {
+      "description": "HTTP status code",
+      "type": "integer",
+      "example": 404
+    }
+  }
+}

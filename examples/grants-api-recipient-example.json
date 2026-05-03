@@ -1,0 +1,13 @@
+{
+  "id": "rec-gh-001",
+  "uei": "GH123456789",
+  "name": "GHANA GRASSROOTS ENTERPRISE",
+  "recipient_level": "R",
+  "location": {
+    "country_name": "Ghana",
+    "country_code": "GH",
+    "city_name": "Accra"
+  },
+  "total_transaction_amount": 400000.0,
+  "total_transactions": 2
+}

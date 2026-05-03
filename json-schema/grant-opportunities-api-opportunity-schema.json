@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/opportunity.json",
+  "title": "Opportunity",
+  "description": "A USADF grant opportunity on Grants.gov",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Grants.gov opportunity identifier",
+      "type": "string",
+      "example": "USADF-2024-001"
+    },
+    "number": {
+      "description": "Opportunity number",
+      "type": "string",
+      "example": "USADF-FY24-AFRICA-GRANT-001"
+    },
+    "title": {
+      "description": "Opportunity title",
+      "type": "string",
+      "example": "USADF FY2024 African Enterprise Grant Program"
+    },
+    "agencyCode": {
+      "description": "Agency code",
+      "type": "string",
+      "example": "ADF"
+    },
+    "agencyName": {
+      "description": "Agency full name",
+      "type": "string",
+      "example": "African Development Foundation"
+    },
+    "openDate": {
+      "description": "Application opening date",
+      "type": "string",
+      "format": "date",
+      "example": "2024-01-15"
+    },
+    "closeDate": {
+      "description": "Application closing deadline",
+      "type": "string",
+      "format": "date",
+      "example": "2024-03-15"
+    },
+    "oppStatus": {
+      "description": "Opportunity status",
+      "type": "string",
+      "enum": [
+        "posted",
+        "closed",
+        "archived",
+        "forecasted"
+      ]
+    },
+    "synopsis": {
+      "description": "Brief synopsis of the opportunity",
+      "type": "string",
+      "example": "The USADF provides grants to African grassroots enterprises"
+    },
+    "description": {
+      "description": "Full opportunity description",
+      "type": "string",
+      "example": "Grants up to $250,000 for African grassroots enterprises"
+    },
+    "estimatedTotalProgramFunding": {
+      "description": "Total estimated program funding in USD",
+      "type": "number",
+      "example": 5000000.0
+    },
+    "awardCeiling": {
+      "description": "Maximum individual award amount in USD",
+      "type": "number",
+      "example": 250000.0
+    },
+    "awardFloor": {
+      "description": "Minimum individual award amount in USD",
+      "type": "number",
+      "example": 10000.0
+    },
+    "expectedNumberOfAwards": {
+      "description": "Expected number of awards to be made",
+      "type": "integer",
+      "example": 25
+    },
+    "eligibleApplicants": {
+      "description": "Eligible applicant types",
+      "type": "string",
+      "example": "Private Institutions of Higher Education"
+    },
+    "eligibilityExplanation": {
+      "description": "Detailed eligibility explanation",
+      "type": "string",
+      "example": "African grassroots enterprises, cooperatives, and community organizations"
+    },
+    "cfdaList": {
+      "description": "CFDA (Catalog of Federal Domestic Assistance) numbers",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contactName": {
+      "description": "Program officer contact name",
+      "type": "string",
+      "example": "USADF Program Officer"
+    },
+    "contactEmail": {
+      "description": "Contact email address",
+      "type": "string",
+      "example": "grants@usadf.gov"
+    }
+  }
+}

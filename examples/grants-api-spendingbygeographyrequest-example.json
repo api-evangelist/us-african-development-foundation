@@ -1,0 +1,5 @@
+{
+  "filters": {},
+  "scope": "recipient_location",
+  "geo_layer": "country"
+}

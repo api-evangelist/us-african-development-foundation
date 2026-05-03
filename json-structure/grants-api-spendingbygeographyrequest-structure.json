@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/spendingbygeographyrequest.json",
+  "title": "SpendingByGeographyRequest",
+  "description": "Request for spending breakdown by geographic location",
+  "type": "record",
+  "fields": [
+    {
+      "name": "filters",
+      "description": "Search filters (same structure as award search)",
+      "type": "object"
+    },
+    {
+      "name": "scope",
+      "description": "Geographic scope",
+      "type": "string"
+    },
+    {
+      "name": "geo_layer",
+      "description": "Geographic layer for aggregation",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/spendingbygeographyrequest.json",
+  "title": "SpendingByGeographyRequest",
+  "description": "Request for spending breakdown by geographic location",
+  "type": "object",
+  "properties": {
+    "filters": {
+      "description": "Search filters (same structure as award search)",
+      "type": "object"
+    },
+    "scope": {
+      "description": "Geographic scope",
+      "type": "string",
+      "enum": [
+        "recipient_location",
+        "place_of_performance"
+      ]
+    },
+    "geo_layer": {
+      "description": "Geographic layer for aggregation",
+      "type": "string",
+      "enum": [
+        "country",
+        "state",
+        "county",
+        "district"
+      ]
+    }
+  }
+}

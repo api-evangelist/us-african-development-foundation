@@ -1,0 +1,87 @@
+name: USADF Grants Data API
+description: >-
+  Shared capability definition for accessing USADF grant award data through the
+  USASpending.gov API. Covers award search, individual award lookup, agency award
+  summary, recipient profiles, and geographic spending breakdowns for the US
+  African Development Foundation (agency code 166).
+version: '1.0.0'
+baseUrl: https://api.usaspending.gov
+mcp:
+  port: 9130
+rest:
+  port: 8130
+operations:
+  - operationId: searchAwards
+    name: Search USADF Grant Awards
+    description: Search USADF grant awards in USASpending with filters for time period, type, and geography
+    method: POST
+    path: /api/v2/search/spending_by_award/
+    requestBody:
+      required: true
+      schema:
+        type: object
+    responses:
+      - status: 200
+        description: Grant award search results
+
+  - operationId: getAward
+    name: Get Award Details
+    description: Retrieve full details for a specific USADF grant award by USASpending identifier
+    method: GET
+    path: /api/v2/awards/{award_id}/
+    parameters:
+      - name: award_id
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      - status: 200
+        description: Award details
+      - status: 404
+        description: Award not found
+
+  - operationId: getAgencyAwards
+    name: Get Agency Award Summary
+    description: Retrieve USADF agency award summary for a given fiscal year
+    method: GET
+    path: /api/v2/agency/166/awards/
+    parameters:
+      - name: fiscal_year
+        in: query
+        required: true
+        schema:
+          type: integer
+    responses:
+      - status: 200
+        description: Agency award summary
+
+  - operationId: getRecipient
+    name: Get Grant Recipient
+    description: Retrieve profile for a USADF grant recipient by Unique Entity Identifier
+    method: GET
+    path: /api/v2/recipient/duns/{uei}/
+    parameters:
+      - name: uei
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      - status: 200
+        description: Recipient profile
+      - status: 404
+        description: Recipient not found
+
+  - operationId: getSpendingByCountry
+    name: Get Spending by Country
+    description: Retrieve USADF grant spending broken down by African country
+    method: POST
+    path: /api/v2/search/spending_by_geography/
+    requestBody:
+      required: true
+      schema:
+        type: object
+    responses:
+      - status: 200
+        description: Spending by country breakdown

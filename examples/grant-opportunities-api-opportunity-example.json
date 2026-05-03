@@ -1,0 +1,23 @@
+{
+  "id": "USADF-2024-001",
+  "number": "USADF-FY24-AFRICA-GRANT-001",
+  "title": "USADF FY2024 African Enterprise Grant Program",
+  "agencyCode": "ADF",
+  "agencyName": "African Development Foundation",
+  "openDate": "2024-01-15",
+  "closeDate": "2024-03-15",
+  "oppStatus": "posted",
+  "synopsis": "The USADF provides grants to African grassroots enterprises",
+  "description": "Grants up to $250,000 for African grassroots enterprises",
+  "estimatedTotalProgramFunding": 5000000.0,
+  "awardCeiling": 250000.0,
+  "awardFloor": 10000.0,
+  "expectedNumberOfAwards": 25,
+  "eligibleApplicants": "Private Institutions of Higher Education",
+  "eligibilityExplanation": "African grassroots enterprises, cooperatives, and community organizations",
+  "cfdaList": [
+    "98.001"
+  ],
+  "contactName": "USADF Program Officer",
+  "contactEmail": "grants@usadf.gov"
+}

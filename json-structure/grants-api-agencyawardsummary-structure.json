@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/agencyawardsummary.json",
+  "title": "AgencyAwardSummary",
+  "description": "Summary of USADF agency award activity for a fiscal year",
+  "type": "record",
+  "fields": [
+    {
+      "name": "toptier_code",
+      "description": "USADF toptier agency code",
+      "type": "string"
+    },
+    {
+      "name": "fiscal_year",
+      "description": "Fiscal year",
+      "type": "int32"
+    },
+    {
+      "name": "transaction_count",
+      "description": "Total number of award transactions",
+      "type": "int32"
+    },
+    {
+      "name": "award_count",
+      "description": "Total number of unique awards",
+      "type": "int32"
+    },
+    {
+      "name": "total_obligations",
+      "description": "Total obligations in USD",
+      "type": "double"
+    },
+    {
+      "name": "recipient_count",
+      "description": "Number of unique recipients",
+      "type": "int32"
+    }
+  ]
+}

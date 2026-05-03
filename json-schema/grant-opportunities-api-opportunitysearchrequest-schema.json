@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/opportunitysearchrequest.json",
+  "title": "OpportunitySearchRequest",
+  "description": "Request body for searching USADF grant opportunities on Grants.gov",
+  "type": "object",
+  "properties": {
+    "agencyCode": {
+      "description": "Agency code filter (use ADF for USADF)",
+      "type": "string",
+      "example": "ADF"
+    },
+    "oppStatus": {
+      "description": "Opportunity status filter",
+      "type": "string",
+      "enum": [
+        "posted",
+        "closed",
+        "archived",
+        "forecasted"
+      ]
+    },
+    "keyword": {
+      "description": "Keyword search in title and description",
+      "type": "string",
+      "example": "Africa enterprise"
+    },
+    "rows": {
+      "description": "Number of results per page",
+      "type": "integer",
+      "example": 25
+    },
+    "startRecordNum": {
+      "description": "Starting record number for pagination",
+      "type": "integer",
+      "example": 0
+    },
+    "sortBy": {
+      "description": "Sort field",
+      "type": "string",
+      "example": "openDate"
+    },
+    "sortOrder": {
+      "description": "Sort order",
+      "type": "string",
+      "enum": [
+        "asc",
+        "desc"
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "ASST_NON_166GH21LE0001",
+  "generated_unique_award_id": "ASST_NON_166GH21LE0001",
+  "type": "04",
+  "type_description": "Project Grant",
+  "category": "grant",
+  "description": "Community enterprise grant for agricultural cooperative development",
+  "total_obligation": 200000.0,
+  "base_and_all_options_value": 200000.0,
+  "period_of_performance_start_date": "2021-06-01",
+  "period_of_performance_current_end_date": "2023-05-31",
+  "awarding_agency": {},
+  "recipient": {
+    "recipient_name": "GHANA GRASSROOTS ENTERPRISE",
+    "recipient_uei": "GH123456789"
+  },
+  "place_of_performance": {
+    "country_name": "Ghana",
+    "country_code": "GH",
+    "city_name": "Accra"
+  }
+}

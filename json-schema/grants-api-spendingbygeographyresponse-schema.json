@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/spendingbygeographyresponse.json",
+  "title": "SpendingByGeographyResponse",
+  "description": "Grant spending breakdown by country",
+  "type": "object",
+  "properties": {
+    "scope": {
+      "type": "string",
+      "example": "recipient_location"
+    },
+    "geo_layer": {
+      "type": "string",
+      "example": "country"
+    },
+    "results": {
+      "description": "Geographic spending breakdown",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "shape_code": {
+            "type": "string",
+            "description": "Country/state code",
+            "example": "GH"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "Country/region name",
+            "example": "Ghana"
+          },
+          "aggregated_amount": {
+            "type": "number",
+            "description": "Total award amount",
+            "example": 1800000.0
+          },
+          "award_count": {
+            "type": "integer",
+            "description": "Number of awards",
+            "example": 9
+          }
+        }
+      }
+    }
+  }
+}

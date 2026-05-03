@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/apierror.json",
+  "title": "APIError",
+  "description": "API error response",
+  "type": "record",
+  "fields": [
+    {
+      "name": "errorCode",
+      "description": "Error code",
+      "type": "string"
+    },
+    {
+      "name": "errorMessage",
+      "description": "Human-readable error message",
+      "type": "string"
+    }
+  ]
+}

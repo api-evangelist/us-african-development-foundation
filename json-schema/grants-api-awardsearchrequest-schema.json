@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/awardsearchrequest.json",
+  "title": "AwardSearchRequest",
+  "description": "Request body for searching USADF grant awards",
+  "type": "object",
+  "properties": {
+    "filters": {
+      "description": "Search filters",
+      "type": "object"
+    },
+    "fields": {
+      "description": "Fields to include in results",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limit": {
+      "description": "Results per page",
+      "type": "integer",
+      "example": 25
+    },
+    "page": {
+      "description": "Page number",
+      "type": "integer",
+      "example": 1
+    },
+    "sort": {
+      "description": "Sort field",
+      "type": "string",
+      "example": "Award Amount"
+    },
+    "order": {
+      "description": "Sort order",
+      "type": "string",
+      "enum": [
+        "asc",
+        "desc"
+      ]
+    }
+  }
+}

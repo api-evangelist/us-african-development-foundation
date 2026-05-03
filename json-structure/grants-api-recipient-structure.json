@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/recipient.json",
+  "title": "Recipient",
+  "description": "Full profile of a USADF grant recipient organization",
+  "type": "record",
+  "fields": [
+    {
+      "name": "id",
+      "description": "Recipient identifier",
+      "type": "string"
+    },
+    {
+      "name": "uei",
+      "description": "Unique Entity Identifier",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "description": "Organization name",
+      "type": "string"
+    },
+    {
+      "name": "recipient_level",
+      "description": "Recipient level (R=recipient, C=child)",
+      "type": "string"
+    },
+    {
+      "name": "location",
+      "type": "placeofperformance"
+    },
+    {
+      "name": "total_transaction_amount",
+      "description": "Total award amount received",
+      "type": "double"
+    },
+    {
+      "name": "total_transactions",
+      "description": "Total number of awards received",
+      "type": "int32"
+    }
+  ]
+}

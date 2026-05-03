@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/spendingbygeographyresponse.json",
+  "title": "SpendingByGeographyResponse",
+  "description": "Grant spending breakdown by country",
+  "type": "record",
+  "fields": [
+    {
+      "name": "scope",
+      "type": "string"
+    },
+    {
+      "name": "geo_layer",
+      "type": "string"
+    },
+    {
+      "name": "results",
+      "description": "Geographic spending breakdown",
+      "type": {
+        "type": "array",
+        "items": "object"
+      }
+    }
+  ]
+}

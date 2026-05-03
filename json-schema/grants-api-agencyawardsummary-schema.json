@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/agencyawardsummary.json",
+  "title": "AgencyAwardSummary",
+  "description": "Summary of USADF agency award activity for a fiscal year",
+  "type": "object",
+  "properties": {
+    "toptier_code": {
+      "description": "USADF toptier agency code",
+      "type": "string",
+      "example": "166"
+    },
+    "fiscal_year": {
+      "description": "Fiscal year",
+      "type": "integer",
+      "example": 2023
+    },
+    "transaction_count": {
+      "description": "Total number of award transactions",
+      "type": "integer",
+      "example": 45
+    },
+    "award_count": {
+      "description": "Total number of unique awards",
+      "type": "integer",
+      "example": 45
+    },
+    "total_obligations": {
+      "description": "Total obligations in USD",
+      "type": "number",
+      "example": 18500000.0
+    },
+    "recipient_count": {
+      "description": "Number of unique recipients",
+      "type": "integer",
+      "example": 42
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/award.json",
+  "title": "Award",
+  "description": "A USADF grant award record from USASpending",
+  "type": "record",
+  "fields": [
+    {
+      "name": "id",
+      "description": "USASpending internal award identifier",
+      "type": "string"
+    },
+    {
+      "name": "generated_unique_award_id",
+      "description": "Generated unique award identifier",
+      "type": "string"
+    },
+    {
+      "name": "type",
+      "description": "Award type code",
+      "type": "string"
+    },
+    {
+      "name": "type_description",
+      "description": "Award type description",
+      "type": "string"
+    },
+    {
+      "name": "category",
+      "description": "Award category",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "description": "Award description",
+      "type": "string"
+    },
+    {
+      "name": "total_obligation",
+      "description": "Total obligated amount in USD",
+      "type": "double"
+    },
+    {
+      "name": "base_and_all_options_value",
+      "description": "Base and all options value in USD",
+      "type": "double"
+    },
+    {
+      "name": "period_of_performance_start_date",
+      "description": "Grant performance start date",
+      "type": "date"
+    },
+    {
+      "name": "period_of_performance_current_end_date",
+      "description": "Grant performance end date",
+      "type": "date"
+    },
+    {
+      "name": "awarding_agency",
+      "description": "Awarding agency details",
+      "type": "object"
+    },
+    {
+      "name": "recipient",
+      "type": "recipientsummary"
+    },
+    {
+      "name": "place_of_performance",
+      "type": "placeofperformance"
+    }
+  ]
+}

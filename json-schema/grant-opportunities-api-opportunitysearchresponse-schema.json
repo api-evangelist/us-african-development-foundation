@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/opportunitysearchresponse.json",
+  "title": "OpportunitySearchResponse",
+  "description": "Search results for USADF grant opportunities",
+  "type": "object",
+  "properties": {
+    "total": {
+      "description": "Total matching opportunities",
+      "type": "integer",
+      "example": 3
+    },
+    "rows": {
+      "description": "Page size",
+      "type": "integer",
+      "example": 25
+    },
+    "startRecordNum": {
+      "description": "Starting record number",
+      "type": "integer",
+      "example": 0
+    },
+    "hitCount": {
+      "description": "Number of results returned",
+      "type": "integer",
+      "example": 3
+    },
+    "oppHits": {
+      "description": "List of matching opportunities",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Opportunity"
+      }
+    }
+  }
+}

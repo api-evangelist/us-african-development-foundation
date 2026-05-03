@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/award.json",
+  "title": "Award",
+  "description": "A USADF grant award record from USASpending",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "USASpending internal award identifier",
+      "type": "string",
+      "example": "ASST_NON_166GH21LE0001"
+    },
+    "generated_unique_award_id": {
+      "description": "Generated unique award identifier",
+      "type": "string",
+      "example": "ASST_NON_166GH21LE0001"
+    },
+    "type": {
+      "description": "Award type code",
+      "type": "string",
+      "example": "04"
+    },
+    "type_description": {
+      "description": "Award type description",
+      "type": "string",
+      "example": "Project Grant"
+    },
+    "category": {
+      "description": "Award category",
+      "type": "string",
+      "enum": [
+        "grant",
+        "contract",
+        "loan",
+        "direct payment",
+        "other"
+      ]
+    },
+    "description": {
+      "description": "Award description",
+      "type": "string",
+      "example": "Community enterprise grant for agricultural cooperative development"
+    },
+    "total_obligation": {
+      "description": "Total obligated amount in USD",
+      "type": "number",
+      "example": 200000.0
+    },
+    "base_and_all_options_value": {
+      "description": "Base and all options value in USD",
+      "type": "number",
+      "example": 200000.0
+    },
+    "period_of_performance_start_date": {
+      "description": "Grant performance start date",
+      "type": "string",
+      "format": "date",
+      "example": "2021-06-01"
+    },
+    "period_of_performance_current_end_date": {
+      "description": "Grant performance end date",
+      "type": "string",
+      "format": "date",
+      "example": "2023-05-31"
+    },
+    "awarding_agency": {
+      "description": "Awarding agency details",
+      "type": "object"
+    },
+    "recipient": {
+      "$ref": "#/components/schemas/RecipientSummary"
+    },
+    "place_of_performance": {
+      "$ref": "#/components/schemas/PlaceOfPerformance"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/opportunity.json",
+  "title": "Opportunity",
+  "description": "A USADF grant opportunity on Grants.gov",
+  "type": "record",
+  "fields": [
+    {
+      "name": "id",
+      "description": "Grants.gov opportunity identifier",
+      "type": "string"
+    },
+    {
+      "name": "number",
+      "description": "Opportunity number",
+      "type": "string"
+    },
+    {
+      "name": "title",
+      "description": "Opportunity title",
+      "type": "string"
+    },
+    {
+      "name": "agencyCode",
+      "description": "Agency code",
+      "type": "string"
+    },
+    {
+      "name": "agencyName",
+      "description": "Agency full name",
+      "type": "string"
+    },
+    {
+      "name": "openDate",
+      "description": "Application opening date",
+      "type": "date"
+    },
+    {
+      "name": "closeDate",
+      "description": "Application closing deadline",
+      "type": "date"
+    },
+    {
+      "name": "oppStatus",
+      "description": "Opportunity status",
+      "type": "string"
+    },
+    {
+      "name": "synopsis",
+      "description": "Brief synopsis of the opportunity",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "description": "Full opportunity description",
+      "type": "string"
+    },
+    {
+      "name": "estimatedTotalProgramFunding",
+      "description": "Total estimated program funding in USD",
+      "type": "double"
+    },
+    {
+      "name": "awardCeiling",
+      "description": "Maximum individual award amount in USD",
+      "type": "double"
+    },
+    {
+      "name": "awardFloor",
+      "description": "Minimum individual award amount in USD",
+      "type": "double"
+    },
+    {
+      "name": "expectedNumberOfAwards",
+      "description": "Expected number of awards to be made",
+      "type": "int32"
+    },
+    {
+      "name": "eligibleApplicants",
+      "description": "Eligible applicant types",
+      "type": "string"
+    },
+    {
+      "name": "eligibilityExplanation",
+      "description": "Detailed eligibility explanation",
+      "type": "string"
+    },
+    {
+      "name": "cfdaList",
+      "description": "CFDA (Catalog of Federal Domestic Assistance) numbers",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "contactName",
+      "description": "Program officer contact name",
+      "type": "string"
+    },
+    {
+      "name": "contactEmail",
+      "description": "Contact email address",
+      "type": "string"
+    }
+  ]
+}

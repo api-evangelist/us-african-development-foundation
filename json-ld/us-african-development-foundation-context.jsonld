@@ -1,0 +1,167 @@
+{
+  "@context": {
+    "usadf": "https://www.usadf.gov/schema/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gov": "https://www.w3.org/ns/gov/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "AwardSearchRequest": "usadf:AwardSearchRequest",
+    "AwardSearchResponse": "usadf:AwardSearchResponse",
+    "Award": "usadf:Award",
+    "RecipientSummary": "usadf:RecipientSummary",
+    "Recipient": "usadf:Recipient",
+    "PlaceOfPerformance": "usadf:PlaceOfPerformance",
+    "AgencyAwardSummary": "usadf:AgencyAwardSummary",
+    "SpendingByGeographyRequest": "usadf:SpendingByGeographyRequest",
+    "SpendingByGeographyResponse": "usadf:SpendingByGeographyResponse",
+    "APIError": "usadf:APIError",
+    "OpportunitySearchRequest": "usadf:OpportunitySearchRequest",
+    "OpportunitySearchResponse": "usadf:OpportunitySearchResponse",
+    "Opportunity": "usadf:Opportunity",
+    "agencyCode": "usadf:agencyCode",
+    "agencyName": "usadf:agencyName",
+    "awardCeiling": {
+      "@id": "usadf:awardCeiling",
+      "@type": "xsd:decimal"
+    },
+    "awardFloor": {
+      "@id": "usadf:awardFloor",
+      "@type": "xsd:decimal"
+    },
+    "award_count": {
+      "@id": "usadf:award_count",
+      "@type": "xsd:integer"
+    },
+    "awarding_agency": "usadf:awarding_agency",
+    "base_and_all_options_value": {
+      "@id": "usadf:base_and_all_options_value",
+      "@type": "xsd:decimal"
+    },
+    "category": "usadf:category",
+    "cfdaList": "usadf:cfdaList",
+    "city_name": {
+      "@id": "schema:addressLocality"
+    },
+    "closeDate": {
+      "@id": "schema:endDate"
+    },
+    "contactEmail": {
+      "@id": "schema:email"
+    },
+    "contactName": {
+      "@id": "schema:contactPoint"
+    },
+    "country_code": "usadf:country_code",
+    "country_name": {
+      "@id": "schema:addressCountry"
+    },
+    "description": {
+      "@id": "schema:description"
+    },
+    "eligibilityExplanation": "usadf:eligibilityExplanation",
+    "eligibleApplicants": "usadf:eligibleApplicants",
+    "errorCode": "usadf:errorCode",
+    "errorMessage": "usadf:errorMessage",
+    "estimatedTotalProgramFunding": {
+      "@id": "usadf:estimatedTotalProgramFunding",
+      "@type": "xsd:decimal"
+    },
+    "expectedNumberOfAwards": {
+      "@id": "usadf:expectedNumberOfAwards",
+      "@type": "xsd:integer"
+    },
+    "fields": "usadf:fields",
+    "filters": "usadf:filters",
+    "fiscal_year": {
+      "@id": "usadf:fiscal_year",
+      "@type": "xsd:integer"
+    },
+    "generated_unique_award_id": "usadf:generated_unique_award_id",
+    "geo_layer": "usadf:geo_layer",
+    "hitCount": {
+      "@id": "usadf:hitCount",
+      "@type": "xsd:integer"
+    },
+    "id": "usadf:id",
+    "keyword": "usadf:keyword",
+    "limit": {
+      "@id": "usadf:limit",
+      "@type": "xsd:integer"
+    },
+    "location": "usadf:location",
+    "name": {
+      "@id": "schema:name"
+    },
+    "number": "usadf:number",
+    "openDate": {
+      "@id": "schema:startDate"
+    },
+    "oppHits": "usadf:oppHits",
+    "oppStatus": "usadf:oppStatus",
+    "order": "usadf:order",
+    "page": {
+      "@id": "usadf:page",
+      "@type": "xsd:integer"
+    },
+    "page_metadata": "usadf:page_metadata",
+    "period_of_performance_current_end_date": {
+      "@id": "usadf:period_of_performance_current_end_date",
+      "@type": "xsd:date"
+    },
+    "period_of_performance_start_date": {
+      "@id": "usadf:period_of_performance_start_date",
+      "@type": "xsd:date"
+    },
+    "place_of_performance": "usadf:place_of_performance",
+    "recipient": "usadf:recipient",
+    "recipient_count": {
+      "@id": "usadf:recipient_count",
+      "@type": "xsd:integer"
+    },
+    "recipient_level": "usadf:recipient_level",
+    "recipient_name": "usadf:recipient_name",
+    "recipient_uei": "usadf:recipient_uei",
+    "results": "usadf:results",
+    "rows": {
+      "@id": "usadf:rows",
+      "@type": "xsd:integer"
+    },
+    "scope": "usadf:scope",
+    "sort": "usadf:sort",
+    "sortBy": "usadf:sortBy",
+    "sortOrder": "usadf:sortOrder",
+    "startRecordNum": {
+      "@id": "usadf:startRecordNum",
+      "@type": "xsd:integer"
+    },
+    "synopsis": "usadf:synopsis",
+    "title": "usadf:title",
+    "toptier_code": "usadf:toptier_code",
+    "total": {
+      "@id": "schema:totalPrice"
+    },
+    "total_obligation": {
+      "@id": "usadf:total_obligation",
+      "@type": "xsd:decimal"
+    },
+    "total_obligations": {
+      "@id": "usadf:total_obligations",
+      "@type": "xsd:decimal"
+    },
+    "total_transaction_amount": {
+      "@id": "usadf:total_transaction_amount",
+      "@type": "xsd:decimal"
+    },
+    "total_transactions": {
+      "@id": "usadf:total_transactions",
+      "@type": "xsd:integer"
+    },
+    "transaction_count": {
+      "@id": "usadf:transaction_count",
+      "@type": "xsd:integer"
+    },
+    "type": "usadf:type",
+    "type_description": "usadf:type_description",
+    "uei": "usadf:uei"
+  }
+}

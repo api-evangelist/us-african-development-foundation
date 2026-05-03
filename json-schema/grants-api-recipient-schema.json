@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/recipient.json",
+  "title": "Recipient",
+  "description": "Full profile of a USADF grant recipient organization",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Recipient identifier",
+      "type": "string",
+      "example": "rec-gh-001"
+    },
+    "uei": {
+      "description": "Unique Entity Identifier",
+      "type": "string",
+      "example": "GH123456789"
+    },
+    "name": {
+      "description": "Organization name",
+      "type": "string",
+      "example": "GHANA GRASSROOTS ENTERPRISE"
+    },
+    "recipient_level": {
+      "description": "Recipient level (R=recipient, C=child)",
+      "type": "string",
+      "example": "R"
+    },
+    "location": {
+      "$ref": "#/components/schemas/PlaceOfPerformance"
+    },
+    "total_transaction_amount": {
+      "description": "Total award amount received",
+      "type": "number",
+      "example": 400000.0
+    },
+    "total_transactions": {
+      "description": "Total number of awards received",
+      "type": "integer",
+      "example": 2
+    }
+  }
+}

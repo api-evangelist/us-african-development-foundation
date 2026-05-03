@@ -1,0 +1,12 @@
+{
+  "filters": {},
+  "fields": [
+    "Award ID",
+    "Recipient Name",
+    "Award Amount"
+  ],
+  "limit": 25,
+  "page": 1,
+  "sort": "Award Amount",
+  "order": "desc"
+}

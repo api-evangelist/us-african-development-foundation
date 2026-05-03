@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/recipientsummary.json",
+  "title": "RecipientSummary",
+  "description": "Summary of a grant recipient",
+  "type": "record",
+  "fields": [
+    {
+      "name": "recipient_name",
+      "description": "Organization name",
+      "type": "string"
+    },
+    {
+      "name": "recipient_uei",
+      "description": "Unique Entity Identifier",
+      "type": "string"
+    }
+  ]
+}

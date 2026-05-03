@@ -1,0 +1,83 @@
+name: USADF African Development Grants
+description: >-
+  Workflow capability for researching, tracking, and analyzing US African
+  Development Foundation (USADF) grant awards and opportunities. Combines
+  grant award data from USASpending with grant opportunity listings from
+  Grants.gov to support development finance research, transparency reporting,
+  and grant opportunity discovery.
+version: '1.0.0'
+mcp:
+  port: 9080
+rest:
+  port: 8080
+personas:
+  - name: Development Finance Researcher
+    description: >-
+      Researchers and analysts tracking USADF grant spending, recipient patterns,
+      and program impact across African countries
+  - name: Grant Applicant
+    description: >-
+      African enterprises, cooperatives, and NGOs seeking USADF funding
+      opportunities and eligibility information
+  - name: Transparency Analyst
+    description: >-
+      Journalists, oversight staff, and policy analysts monitoring federal
+      grant award data through USASpending transparency tools
+tools:
+  - name: search_usadf_awards
+    description: Search USADF grant awards in the federal awards transparency database
+    operationId: searchAwards
+    api: grants-api
+    parameters:
+      - name: filters
+        description: Award search filters including time period and award type
+      - name: fields
+        description: Fields to include in search results
+      - name: limit
+        description: Number of results per page
+  - name: get_award_details
+    description: Get full details for a specific USADF grant award
+    operationId: getAward
+    api: grants-api
+    parameters:
+      - name: award_id
+        description: USASpending award identifier
+  - name: get_agency_summary
+    description: Get USADF agency award summary for a fiscal year
+    operationId: getAgencyAwards
+    api: grants-api
+    parameters:
+      - name: fiscal_year
+        description: Fiscal year (e.g. 2023)
+  - name: get_recipient_profile
+    description: Get profile and award history for a USADF grant recipient
+    operationId: getRecipient
+    api: grants-api
+    parameters:
+      - name: uei
+        description: Unique Entity Identifier of the recipient organization
+  - name: get_spending_by_country
+    description: Get USADF grant spending breakdown by African country
+    operationId: getSpendingByCountry
+    api: grants-api
+    parameters:
+      - name: filters
+        description: Search filters to apply to the geographic breakdown
+      - name: scope
+        description: Geographic scope (recipient_location or place_of_performance)
+  - name: search_grant_opportunities
+    description: Search for open USADF grant opportunities on Grants.gov
+    operationId: searchOpportunities
+    api: grant-opportunities-api
+    parameters:
+      - name: oppStatus
+        description: Opportunity status (posted, closed, archived, forecasted)
+      - name: keyword
+        description: Keyword to search in opportunity title and description
+  - name: get_opportunity_details
+    description: Get full details for a specific USADF grant opportunity
+    operationId: getOpportunity
+    api: grant-opportunities-api
+    parameters:
+      - name: opportunityId
+        description: Grants.gov opportunity identifier

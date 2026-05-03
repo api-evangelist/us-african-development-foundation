@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/recipientsummary.json",
+  "title": "RecipientSummary",
+  "description": "Summary of a grant recipient",
+  "type": "object",
+  "properties": {
+    "recipient_name": {
+      "description": "Organization name",
+      "type": "string",
+      "example": "GHANA GRASSROOTS ENTERPRISE"
+    },
+    "recipient_uei": {
+      "description": "Unique Entity Identifier",
+      "type": "string",
+      "example": "GH123456789"
+    }
+  }
+}

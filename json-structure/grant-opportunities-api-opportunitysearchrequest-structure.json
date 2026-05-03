@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/opportunitysearchrequest.json",
+  "title": "OpportunitySearchRequest",
+  "description": "Request body for searching USADF grant opportunities on Grants.gov",
+  "type": "record",
+  "fields": [
+    {
+      "name": "agencyCode",
+      "description": "Agency code filter (use ADF for USADF)",
+      "type": "string"
+    },
+    {
+      "name": "oppStatus",
+      "description": "Opportunity status filter",
+      "type": "string"
+    },
+    {
+      "name": "keyword",
+      "description": "Keyword search in title and description",
+      "type": "string"
+    },
+    {
+      "name": "rows",
+      "description": "Number of results per page",
+      "type": "int32"
+    },
+    {
+      "name": "startRecordNum",
+      "description": "Starting record number for pagination",
+      "type": "int32"
+    },
+    {
+      "name": "sortBy",
+      "description": "Sort field",
+      "type": "string"
+    },
+    {
+      "name": "sortOrder",
+      "description": "Sort order",
+      "type": "string"
+    }
+  ]
+}

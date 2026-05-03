@@ -1,0 +1,99 @@
+info:
+  title: US African Development Foundation Vocabulary
+  description: >-
+    Unified taxonomy mapping resources, actions, workflows, and personas across
+    the USADF grants data and grant opportunities API operational and capability
+    dimensions. Reflects the USADF mission of investing in African grassroots
+    enterprises and community organizations.
+  version: '1.0.0'
+
+operational:
+  resources:
+    - name: Award
+      description: A USADF grant award record from the federal awards transparency system (USASpending)
+      aliases: [grant-award, federal-award, assistance-award]
+    - name: Recipient
+      description: An organization receiving USADF grant funding (African enterprise, cooperative, or NGO)
+      aliases: [grantee, grant-recipient, enterprise]
+    - name: Opportunity
+      description: An open USADF grant solicitation posted on Grants.gov
+      aliases: [grant-opportunity, funding-opportunity, solicitation]
+    - name: AgencyAwardSummary
+      description: Aggregated USADF agency award activity for a fiscal year
+      aliases: [agency-summary, fiscal-year-summary]
+    - name: PlaceOfPerformance
+      description: Geographic location where a USADF grant is being performed (typically an African country)
+      aliases: [performance-location, grant-location]
+    - name: RecipientSummary
+      description: Summary of a USADF grant recipient embedded in award records
+      aliases: [recipient-profile]
+    - name: AwardSearchRequest
+      description: Search request body for querying USADF grant awards in USASpending
+      aliases: [award-query, search-request]
+    - name: AwardSearchResponse
+      description: Paginated results from a USADF grant award search
+      aliases: [search-results, award-results]
+    - name: SpendingByGeographyRequest
+      description: Request for USADF spending breakdown by country or region
+      aliases: [geographic-query]
+    - name: SpendingByGeographyResponse
+      description: USADF grant spending aggregated by country or geographic region
+      aliases: [country-spending, geographic-breakdown]
+    - name: Opportunity
+      description: An open or historical USADF grant opportunity posted on Grants.gov
+      aliases: [grant-opportunity, funding-solicitation]
+    - name: OpportunitySearchRequest
+      description: Search request for USADF grant opportunities on Grants.gov
+      aliases: [opportunity-query]
+    - name: OpportunitySearchResponse
+      description: Search results for USADF grant opportunities
+      aliases: [opportunity-results]
+  actions:
+    - name: Search
+      description: Query for matching grant awards or opportunities using filter criteria
+      httpMethod: POST
+      aliases: [find, query, filter]
+    - name: Get
+      description: Retrieve a specific award, recipient, or opportunity by identifier
+      httpMethod: GET
+      aliases: [fetch, retrieve, lookup]
+    - name: Summarize
+      description: Get aggregated summary data for the USADF agency by fiscal year
+      httpMethod: GET
+      aliases: [aggregate, summarize, overview]
+    - name: Analyze
+      description: Break down USADF spending by geographic region or country
+      httpMethod: POST
+      aliases: [breakdown, distribute, map]
+
+capability:
+  workflows:
+    - name: African Development Grants
+      description: >-
+        Research and tracking workflow for USADF grant awards, recipient organizations,
+        and open funding opportunities for African grassroots enterprises
+      apis:
+        - Grants Data API
+        - Grant Opportunities API
+  personas:
+    - name: Development Finance Researcher
+      description: Researchers and analysts studying USADF grant patterns and development impact
+      goals:
+        - Track USADF grant awards by country and recipient
+        - Analyze annual USADF spending and recipient diversity
+        - Map geographic distribution of USADF investments
+        - Research specific grantee organizations
+    - name: Grant Applicant
+      description: African enterprises and NGOs seeking USADF funding
+      goals:
+        - Find open USADF grant opportunities
+        - Understand eligibility requirements and award ceilings
+        - Access application deadlines and contact information
+        - Review past USADF grants in their sector
+    - name: Transparency Analyst
+      description: Journalists and oversight staff monitoring USADF spending
+      goals:
+        - Audit USADF grant award data for accuracy and compliance
+        - Track USADF budget authority and obligations over time
+        - Identify patterns in recipient selection and geographic focus
+        - Monitor program reach against congressional mandates

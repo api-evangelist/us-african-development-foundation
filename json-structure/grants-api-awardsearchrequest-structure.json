@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/awardsearchrequest.json",
+  "title": "AwardSearchRequest",
+  "description": "Request body for searching USADF grant awards",
+  "type": "record",
+  "fields": [
+    {
+      "name": "filters",
+      "description": "Search filters",
+      "type": "object"
+    },
+    {
+      "name": "fields",
+      "description": "Fields to include in results",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "limit",
+      "description": "Results per page",
+      "type": "int32"
+    },
+    {
+      "name": "page",
+      "description": "Page number",
+      "type": "int32"
+    },
+    {
+      "name": "sort",
+      "description": "Sort field",
+      "type": "string"
+    },
+    {
+      "name": "order",
+      "description": "Sort order",
+      "type": "string"
+    }
+  ]
+}

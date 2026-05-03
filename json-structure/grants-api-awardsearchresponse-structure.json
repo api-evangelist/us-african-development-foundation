@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://www.usadf.gov/structure/awardsearchresponse.json",
+  "title": "AwardSearchResponse",
+  "description": "Search results for USADF grant awards",
+  "type": "record",
+  "fields": [
+    {
+      "name": "limit",
+      "description": "Page size",
+      "type": "int32"
+    },
+    {
+      "name": "results",
+      "description": "Award search results",
+      "type": {
+        "type": "array",
+        "items": "object"
+      }
+    },
+    {
+      "name": "page_metadata",
+      "description": "Pagination metadata",
+      "type": "object"
+    }
+  ]
+}

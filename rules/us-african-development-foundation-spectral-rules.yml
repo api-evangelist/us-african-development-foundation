@@ -1,0 +1,245 @@
+rules:
+
+  # Info Rules
+  usadf-info-title-present:
+    description: API info must have a title
+    message: Info object must have a title
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+
+  usadf-info-description-present:
+    description: API info must have a description
+    message: Info object must have a description
+    severity: warn
+    given: $.info
+    then:
+      field: description
+      function: truthy
+
+  usadf-info-version-present:
+    description: API info must have a version
+    message: Info object must have a version
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+
+  usadf-info-contact-present:
+    description: Government APIs must have contact information
+    message: Info object must include contact details for government APIs
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+
+  # OpenAPI Version Rules
+  usadf-openapi-version:
+    description: Must use OpenAPI 3.x
+    message: OpenAPI version must be 3.x
+    severity: error
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # Server Rules
+  usadf-servers-present:
+    description: API must define servers
+    message: Servers array must be defined
+    severity: warn
+    given: $
+    then:
+      field: servers
+      function: truthy
+
+  usadf-server-url-https:
+    description: Server URLs should use HTTPS
+    message: "Server URL should use HTTPS: {{value}}"
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  # Path Rules
+  usadf-paths-present:
+    description: API must define paths
+    message: Paths object must be defined and non-empty
+    severity: error
+    given: $
+    then:
+      field: paths
+      function: truthy
+
+  usadf-path-kebab-case:
+    description: Path segments should use kebab-case or underscores
+    message: "Path should use lowercase letters: {{value}}"
+    severity: hint
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/[a-z0-9/_{}.-]*$"
+
+  # Operation Rules
+  usadf-operation-id-present:
+    description: All operations must have an operationId
+    message: Operation must have an operationId
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+
+  usadf-operation-summary-present:
+    description: All operations must have a summary
+    message: Operation must have a summary
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+
+  usadf-operation-description-present:
+    description: All operations should have a description
+    message: Operation should have a description
+    severity: hint
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+
+  usadf-operation-tags-present:
+    description: All operations must have at least one tag
+    message: Operation must have at least one tag
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  # Response Rules
+  usadf-response-description-present:
+    description: All responses must have a description
+    message: Response must have a description
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses[*]
+    then:
+      field: description
+      function: truthy
+
+  usadf-response-success-present:
+    description: Operations must define a 2xx success response
+    message: Operation must define a 2xx response
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+
+  # Schema Rules
+  usadf-schema-description-present:
+    description: All schemas should have a description
+    message: Schema should have a description
+    severity: hint
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+
+  usadf-schema-properties-examples:
+    description: Schema properties should include examples
+    message: Schema property should have an example value
+    severity: hint
+    given: $.components.schemas[*].properties[*]
+    then:
+      field: example
+      function: truthy
+
+  # Government Grant-Specific Rules
+  usadf-award-amount-defined:
+    description: Award schemas should define total obligation or award amount
+    message: Award schema should define total_obligation or estimatedTotalProgramFunding
+    severity: hint
+    given: $.components.schemas.Award.properties
+    then:
+      field: total_obligation
+      function: truthy
+
+  usadf-opportunity-dates-defined:
+    description: Grant opportunity schemas must define open and close dates
+    message: Opportunity schema should define openDate and closeDate
+    severity: warn
+    given: $.components.schemas.Opportunity.properties
+    then:
+      field: closeDate
+      function: truthy
+
+  usadf-opportunity-status-enum:
+    description: Grant opportunity status should use an enum
+    message: Opportunity status should define an enum
+    severity: warn
+    given: $.components.schemas.Opportunity.properties.oppStatus
+    then:
+      field: enum
+      function: truthy
+
+  usadf-award-category-enum:
+    description: Award category should use an enum
+    message: Award category should define an enum of valid values
+    severity: hint
+    given: $.components.schemas.Award.properties.category
+    then:
+      field: enum
+      function: truthy
+
+  # HTTP Method Rules
+  usadf-get-no-request-body:
+    description: GET operations should not have a request body
+    message: GET operation should not have a request body
+    severity: warn
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy
+
+  # Quality Rules
+  usadf-microcks-operation-present:
+    description: Operations should include Microcks extension for mocking
+    message: Operation should have x-microcks-operation extension
+    severity: hint
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: x-microcks-operation
+      function: truthy
+
+  usadf-examples-in-responses:
+    description: Responses should include examples
+    message: Response content should include examples
+    severity: hint
+    given: $.paths[*][get,post,put,patch,delete].responses[*].content[*]
+    then:
+      field: examples
+      function: truthy
+
+  usadf-parameter-description:
+    description: Parameters should have descriptions
+    message: Parameter should have a description
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: description
+      function: truthy

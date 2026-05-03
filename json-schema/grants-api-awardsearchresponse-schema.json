@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.usadf.gov/schema/awardsearchresponse.json",
+  "title": "AwardSearchResponse",
+  "description": "Search results for USADF grant awards",
+  "type": "object",
+  "properties": {
+    "limit": {
+      "description": "Page size",
+      "type": "integer",
+      "example": 25
+    },
+    "results": {
+      "description": "Award search results",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "page_metadata": {
+      "description": "Pagination metadata",
+      "type": "object"
+    }
+  }
+}

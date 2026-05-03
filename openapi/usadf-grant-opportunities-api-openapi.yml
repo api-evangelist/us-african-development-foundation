@@ -1,0 +1,324 @@
+openapi: 3.0.3
+info:
+  title: USADF Grant Opportunities API
+  description: >-
+    Access to US African Development Foundation (USADF) grant opportunity listings
+    through the Grants.gov API. USADF posts open grant solicitations on Grants.gov
+    for African grassroots enterprises, cooperatives, social entrepreneurs, and
+    community organizations seeking funding for African-led development initiatives.
+    USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant
+    subset of the Grants.gov API.
+  version: '1.0.0'
+  contact:
+    name: Grants.gov Contact Center
+    url: https://www.grants.gov/developers.html
+  x-generated-from: documentation
+externalDocs:
+  description: Grants.gov Developer Resources
+  url: https://www.grants.gov/developers.html
+servers:
+  - url: https://apply07.grants.gov/grantsws/rest
+    description: Grants.gov REST API
+tags:
+  - name: Opportunities
+    description: USADF grant opportunity listings on Grants.gov
+security: []
+paths:
+  /opportunities/search:
+    post:
+      operationId: searchOpportunities
+      summary: USADF Search Grant Opportunities
+      description: >-
+        Search for USADF grant opportunities on Grants.gov. Filter by agency (ADF),
+        status (open, closed, archived), and other criteria. Returns USADF funding
+        opportunities for African grassroots enterprises and social entrepreneurs.
+      tags:
+        - Opportunities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OpportunitySearchRequest'
+            examples:
+              searchOpportunitiesRequestExample:
+                summary: Default searchOpportunities request
+                x-microcks-default: true
+                value:
+                  agencyCode: "ADF"
+                  oppStatus: "posted"
+                  rows: 25
+                  startRecordNum: 0
+      responses:
+        '200':
+          description: USADF grant opportunity search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpportunitySearchResponse'
+              examples:
+                searchOpportunities200Example:
+                  summary: Default searchOpportunities 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 3
+                    rows: 25
+                    startRecordNum: 0
+                    hitCount: 3
+                    oppHits:
+                      - id: "USADF-2024-001"
+                        number: "USADF-FY24-AFRICA-GRANT-001"
+                        title: "USADF FY2024 African Enterprise Grant Program"
+                        agencyCode: "ADF"
+                        agencyName: "African Development Foundation"
+                        openDate: "2024-01-15"
+                        closeDate: "2024-03-15"
+                        oppStatus: "posted"
+                        description: "Grants up to $250,000 for African grassroots enterprises"
+                        estimatedTotalProgramFunding: 5000000.00
+                        expectedNumberOfAwards: 25
+                        cfdaList:
+                          - "98.001"
+        '400':
+          description: Invalid search parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /opportunities/{opportunityId}:
+    get:
+      operationId: getOpportunity
+      summary: USADF Get Grant Opportunity Details
+      description: >-
+        Retrieve detailed information for a specific USADF grant opportunity by
+        its Grants.gov opportunity ID. Returns full details including eligibility,
+        award amounts, application deadlines, and contact information.
+      tags:
+        - Opportunities
+      parameters:
+        - name: opportunityId
+          in: path
+          required: true
+          description: Grants.gov opportunity identifier
+          schema:
+            type: string
+          example: "USADF-2024-001"
+      responses:
+        '200':
+          description: Grant opportunity details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Opportunity'
+              examples:
+                getOpportunity200Example:
+                  summary: Default getOpportunity 200 response
+                  x-microcks-default: true
+                  value:
+                    id: "USADF-2024-001"
+                    number: "USADF-FY24-AFRICA-GRANT-001"
+                    title: "USADF FY2024 African Enterprise Grant Program"
+                    agencyCode: "ADF"
+                    agencyName: "African Development Foundation"
+                    openDate: "2024-01-15"
+                    closeDate: "2024-03-15"
+                    oppStatus: "posted"
+                    synopsis: "The USADF provides grants to African grassroots enterprises, cooperatives, and community organizations promoting local economic development."
+                    description: "Grants up to $250,000 for African grassroots enterprises"
+                    estimatedTotalProgramFunding: 5000000.00
+                    awardCeiling: 250000.00
+                    awardFloor: 10000.00
+                    expectedNumberOfAwards: 25
+                    eligibleApplicants: "Private Institutions of Higher Education"
+                    eligibilityExplanation: "African grassroots enterprises, cooperatives, and community organizations in eligible countries"
+                    cfdaList:
+                      - "98.001"
+                    contactName: "USADF Program Officer"
+                    contactEmail: "grants@usadf.gov"
+        '404':
+          description: Opportunity not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+components:
+  schemas:
+    OpportunitySearchRequest:
+      type: object
+      description: Request body for searching USADF grant opportunities on Grants.gov
+      properties:
+        agencyCode:
+          type: string
+          description: Agency code filter (use ADF for USADF)
+          example: "ADF"
+        oppStatus:
+          type: string
+          description: Opportunity status filter
+          enum:
+            - posted
+            - closed
+            - archived
+            - forecasted
+          example: "posted"
+        keyword:
+          type: string
+          description: Keyword search in title and description
+          example: "Africa enterprise"
+        rows:
+          type: integer
+          description: Number of results per page
+          default: 25
+          example: 25
+        startRecordNum:
+          type: integer
+          description: Starting record number for pagination
+          default: 0
+          example: 0
+        sortBy:
+          type: string
+          description: Sort field
+          example: "openDate"
+        sortOrder:
+          type: string
+          description: Sort order
+          enum:
+            - asc
+            - desc
+          example: "desc"
+
+    OpportunitySearchResponse:
+      type: object
+      description: Search results for USADF grant opportunities
+      properties:
+        total:
+          type: integer
+          description: Total matching opportunities
+          example: 3
+        rows:
+          type: integer
+          description: Page size
+          example: 25
+        startRecordNum:
+          type: integer
+          description: Starting record number
+          example: 0
+        hitCount:
+          type: integer
+          description: Number of results returned
+          example: 3
+        oppHits:
+          type: array
+          description: List of matching opportunities
+          items:
+            $ref: '#/components/schemas/Opportunity'
+
+    Opportunity:
+      type: object
+      description: A USADF grant opportunity on Grants.gov
+      properties:
+        id:
+          type: string
+          description: Grants.gov opportunity identifier
+          example: "USADF-2024-001"
+        number:
+          type: string
+          description: Opportunity number
+          example: "USADF-FY24-AFRICA-GRANT-001"
+        title:
+          type: string
+          description: Opportunity title
+          example: "USADF FY2024 African Enterprise Grant Program"
+        agencyCode:
+          type: string
+          description: Agency code
+          example: "ADF"
+        agencyName:
+          type: string
+          description: Agency full name
+          example: "African Development Foundation"
+        openDate:
+          type: string
+          format: date
+          description: Application opening date
+          example: "2024-01-15"
+        closeDate:
+          type: string
+          format: date
+          description: Application closing deadline
+          example: "2024-03-15"
+        oppStatus:
+          type: string
+          description: Opportunity status
+          enum:
+            - posted
+            - closed
+            - archived
+            - forecasted
+          example: "posted"
+        synopsis:
+          type: string
+          description: Brief synopsis of the opportunity
+          example: "The USADF provides grants to African grassroots enterprises"
+        description:
+          type: string
+          description: Full opportunity description
+          example: "Grants up to $250,000 for African grassroots enterprises"
+        estimatedTotalProgramFunding:
+          type: number
+          description: Total estimated program funding in USD
+          example: 5000000.00
+        awardCeiling:
+          type: number
+          description: Maximum individual award amount in USD
+          example: 250000.00
+        awardFloor:
+          type: number
+          description: Minimum individual award amount in USD
+          example: 10000.00
+        expectedNumberOfAwards:
+          type: integer
+          description: Expected number of awards to be made
+          example: 25
+        eligibleApplicants:
+          type: string
+          description: Eligible applicant types
+          example: "Private Institutions of Higher Education"
+        eligibilityExplanation:
+          type: string
+          description: Detailed eligibility explanation
+          example: "African grassroots enterprises, cooperatives, and community organizations"
+        cfdaList:
+          type: array
+          description: CFDA (Catalog of Federal Domestic Assistance) numbers
+          items:
+            type: string
+          example: ["98.001"]
+        contactName:
+          type: string
+          description: Program officer contact name
+          example: "USADF Program Officer"
+        contactEmail:
+          type: string
+          description: Contact email address
+          example: "grants@usadf.gov"
+
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        errorCode:
+          type: string
+          description: Error code
+          example: "NOT_FOUND"
+        errorMessage:
+          type: string
+          description: Human-readable error message
+          example: "Grant opportunity not found."
