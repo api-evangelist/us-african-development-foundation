@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: USADF Grants Data API — Spending
+  description: 'USADF Grants Data API — Spending. 1 operations. Lead operation: USADF Get Spending by Country. Self-contained
+    Naftiko capability covering one Us African Development Foundation business surface.'
+  tags:
+  - Us African Development Foundation
+  - Spending
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    US_AFRICAN_DEVELOPMENT_FOUNDATION_API_KEY: US_AFRICAN_DEVELOPMENT_FOUNDATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: usadf-grants-spending
+    baseUri: https://api.usaspending.gov
+    description: USADF Grants Data API — Spending business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-search-spending_by_geography
+      path: /api/v2/search/spending_by_geography/
+      operations:
+      - name: getspendingbycountry
+        method: POST
+        description: USADF Get Spending by Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: usadf-grants-spending-rest
+    port: 8080
+    description: REST adapter for USADF Grants Data API — Spending. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/search/spending-by-geography
+      name: api-v2-search-spending-by-geography
+      description: REST surface for api-v2-search-spending_by_geography.
+      operations:
+      - method: POST
+        name: getspendingbycountry
+        description: USADF Get Spending by Country
+        call: usadf-grants-spending.getspendingbycountry
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: usadf-grants-spending-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for USADF Grants Data API — Spending. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: usadf-get-spending-country
+      description: USADF Get Spending by Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: usadf-grants-spending.getspendingbycountry
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

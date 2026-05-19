@@ -1,0 +1,119 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: USADF Grants Data API — Awards
+  description: 'USADF Grants Data API — Awards. 2 operations. Lead operation: USADF Get Award Details. Self-contained Naftiko
+    capability covering one Us African Development Foundation business surface.'
+  tags:
+  - Us African Development Foundation
+  - Awards
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    US_AFRICAN_DEVELOPMENT_FOUNDATION_API_KEY: US_AFRICAN_DEVELOPMENT_FOUNDATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: usadf-grants-awards
+    baseUri: https://api.usaspending.gov
+    description: USADF Grants Data API — Awards business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-awards-award_id
+      path: /api/v2/awards/{award_id}/
+      operations:
+      - name: getaward
+        method: GET
+        description: USADF Get Award Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: award_id
+          in: path
+          type: string
+          description: USASpending award identifier
+          required: true
+    - name: api-v2-search-spending_by_award
+      path: /api/v2/search/spending_by_award/
+      operations:
+      - name: searchawards
+        method: POST
+        description: USADF Search Grant Awards
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: usadf-grants-awards-rest
+    port: 8080
+    description: REST adapter for USADF Grants Data API — Awards. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/awards/{award-id}
+      name: api-v2-awards-award-id
+      description: REST surface for api-v2-awards-award_id.
+      operations:
+      - method: GET
+        name: getaward
+        description: USADF Get Award Details
+        call: usadf-grants-awards.getaward
+        with:
+          award_id: rest.award_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/search/spending-by-award
+      name: api-v2-search-spending-by-award
+      description: REST surface for api-v2-search-spending_by_award.
+      operations:
+      - method: POST
+        name: searchawards
+        description: USADF Search Grant Awards
+        call: usadf-grants-awards.searchawards
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: usadf-grants-awards-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for USADF Grants Data API — Awards. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: usadf-get-award-details
+      description: USADF Get Award Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: usadf-grants-awards.getaward
+      with:
+        award_id: tools.award_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: usadf-search-grant-awards
+      description: USADF Search Grant Awards
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: usadf-grants-awards.searchawards
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
