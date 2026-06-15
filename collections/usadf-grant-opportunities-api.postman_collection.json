@@ -1,0 +1,301 @@
+{
+  "item": [
+    {
+      "id": "5013548b-daf2-43fb-8385-0af430d99764",
+      "name": "Opportunities",
+      "description": {
+        "content": "USADF grant opportunity listings on Grants.gov",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "75a8ae94-2538-4a15-a519-90e9735894f9",
+          "name": "USADF Search Grant Opportunities",
+          "request": {
+            "name": "USADF Search Grant Opportunities",
+            "description": {
+              "content": "Search for USADF grant opportunities on Grants.gov. Filter by agency (ADF), status (open, closed, archived), and other criteria. Returns USADF funding opportunities for African grassroots enterprises and social entrepreneurs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "opportunities",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agencyCode\": \"<string>\",\n  \"oppStatus\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"rows\": 25,\n  \"startRecordNum\": 0,\n  \"sortBy\": \"<string>\",\n  \"sortOrder\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b68c8b59-4f49-4578-b810-5da97c05a99e",
+              "name": "USADF grant opportunity search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opportunities",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agencyCode\": \"ADF\",\n  \"oppStatus\": \"posted\",\n  \"rows\": 25,\n  \"startRecordNum\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 3,\n  \"rows\": 25,\n  \"startRecordNum\": 0,\n  \"hitCount\": 3,\n  \"oppHits\": [\n    {\n      \"id\": \"USADF-2024-001\",\n      \"number\": \"USADF-FY24-AFRICA-GRANT-001\",\n      \"title\": \"USADF FY2024 African Enterprise Grant Program\",\n      \"agencyCode\": \"ADF\",\n      \"agencyName\": \"African Development Foundation\",\n      \"openDate\": \"2024-01-15\",\n      \"closeDate\": \"2024-03-15\",\n      \"oppStatus\": \"posted\",\n      \"description\": \"Grants up to $250,000 for African grassroots enterprises\",\n      \"estimatedTotalProgramFunding\": 5000000,\n      \"expectedNumberOfAwards\": 25,\n      \"cfdaList\": [\n        \"98.001\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0012103a-446b-4d06-899e-598eeebd9bf9",
+              "name": "Invalid search parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opportunities",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agencyCode\": \"ADF\",\n  \"oppStatus\": \"posted\",\n  \"rows\": 25,\n  \"startRecordNum\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"NOT_FOUND\",\n  \"errorMessage\": \"Grant opportunity not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a0e4142-46a1-4306-a963-791d049e24c0",
+          "name": "USADF Get Grant Opportunity Details",
+          "request": {
+            "name": "USADF Get Grant Opportunity Details",
+            "description": {
+              "content": "Retrieve detailed information for a specific USADF grant opportunity by its Grants.gov opportunity ID. Returns full details including eligibility, award amounts, application deadlines, and contact information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "opportunities",
+                ":opportunityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "opportunityId",
+                  "description": "(Required) Grants.gov opportunity identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0938a6f-aa27-4f7b-92df-e608abe1a107",
+              "name": "Grant opportunity details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opportunities",
+                    ":opportunityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "opportunityId",
+                      "description": "(Required) Grants.gov opportunity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"USADF-2024-001\",\n  \"number\": \"USADF-FY24-AFRICA-GRANT-001\",\n  \"title\": \"USADF FY2024 African Enterprise Grant Program\",\n  \"agencyCode\": \"ADF\",\n  \"agencyName\": \"African Development Foundation\",\n  \"openDate\": \"2024-01-15\",\n  \"closeDate\": \"2024-03-15\",\n  \"oppStatus\": \"posted\",\n  \"synopsis\": \"The USADF provides grants to African grassroots enterprises, cooperatives, and community organizations promoting local economic development.\",\n  \"description\": \"Grants up to $250,000 for African grassroots enterprises\",\n  \"estimatedTotalProgramFunding\": 5000000,\n  \"awardCeiling\": 250000,\n  \"awardFloor\": 10000,\n  \"expectedNumberOfAwards\": 25,\n  \"eligibleApplicants\": \"Private Institutions of Higher Education\",\n  \"eligibilityExplanation\": \"African grassroots enterprises, cooperatives, and community organizations in eligible countries\",\n  \"cfdaList\": [\n    \"98.001\"\n  ],\n  \"contactName\": \"USADF Program Officer\",\n  \"contactEmail\": \"grants@usadf.gov\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "905a4190-b2be-4aa4-9c2c-defce0bab6e3",
+              "name": "Opportunity not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opportunities",
+                    ":opportunityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "opportunityId",
+                      "description": "(Required) Grants.gov opportunity identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"NOT_FOUND\",\n  \"errorMessage\": \"Grant opportunity not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apply07.grants.gov/grantsws/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f795fa37-fbc8-4e3e-95fb-6571feb5cd9e",
+    "name": "USADF Grant Opportunities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to US African Development Foundation (USADF) grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, social entrepreneurs, and community organizations seeking funding for African-led development initiatives. USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant subset of the Grants.gov API.\n\nContact Support:\n Name: Grants.gov Contact Center",
+      "type": "text/plain"
+    }
+  }
+}

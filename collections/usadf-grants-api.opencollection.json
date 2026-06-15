@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USADF Grants Data API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Awards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "USADF Search Grant Awards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usaspending.gov/api/v2/search/spending_by_award/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for USADF grant awards using the USASpending API. Filter by award type, recipient country, time period, and other criteria. Use agencies filter with USADF toptier_code \"166\" to retrieve USADF awards."
+        },
+        {
+          "info": {
+            "name": "USADF Get Award Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usaspending.gov/api/v2/awards/:award_id/",
+            "params": [
+              {
+                "name": "award_id",
+                "value": "ASST_NON_166GH21LE0001",
+                "type": "path",
+                "description": "USASpending award identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific USADF grant award by its USASpending award identifier. Returns full award details including recipient, place of performance, funding agency, and transaction history."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Agency",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "USADF Get Agency Award Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usaspending.gov/api/v2/agency/166/awards/",
+            "params": [
+              {
+                "name": "fiscal_year",
+                "value": "2023",
+                "type": "query",
+                "description": "Fiscal year for the summary"
+              },
+              {
+                "name": "award_type_codes",
+                "value": "02,03,04",
+                "type": "query",
+                "description": "Comma-separated award type codes (02=Block Grant, 03=Formula Grant, 04=Project Grant)"
+              }
+            ]
+          },
+          "docs": "Retrieve a summary of USADF grant award activity for a given fiscal year, including total obligations, number of awards, and breakdown by award type."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recipients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "USADF Get Grant Recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usaspending.gov/api/v2/recipient/duns/:uei/",
+            "params": [
+              {
+                "name": "uei",
+                "value": "GH123456789",
+                "type": "path",
+                "description": "Unique Entity Identifier (UEI) for the recipient organization"
+              },
+              {
+                "name": "year",
+                "value": "2023",
+                "type": "query",
+                "description": "Fiscal year for award data context"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed profile for a USADF grant recipient by their Unique Entity Identifier (UEI). Returns recipient organization details and award history summary."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Spending",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "USADF Get Spending by Country",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usaspending.gov/api/v2/search/spending_by_geography/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve USADF grant spending broken down by recipient country. Shows distribution of grant awards across African countries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

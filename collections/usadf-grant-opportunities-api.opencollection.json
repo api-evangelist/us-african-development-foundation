@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USADF Grant Opportunities API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Opportunities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "USADF Search Grant Opportunities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apply07.grants.gov/grantsws/rest/opportunities/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for USADF grant opportunities on Grants.gov. Filter by agency (ADF), status (open, closed, archived), and other criteria. Returns USADF funding opportunities for African grassroots enterprises and social entrepreneurs."
+        },
+        {
+          "info": {
+            "name": "USADF Get Grant Opportunity Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apply07.grants.gov/grantsws/rest/opportunities/:opportunityId",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "USADF-2024-001",
+                "type": "path",
+                "description": "Grants.gov opportunity identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific USADF grant opportunity by its Grants.gov opportunity ID. Returns full details including eligibility, award amounts, application deadlines, and contact information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

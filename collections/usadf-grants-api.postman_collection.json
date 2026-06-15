@@ -1,0 +1,810 @@
+{
+  "item": [
+    {
+      "id": "8a4d52eb-c629-40e0-afd5-813b49dbaf56",
+      "name": "Awards",
+      "description": {
+        "content": "USADF grant award data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2fc6df3a-6103-4835-b8e5-c4e17b8fcd48",
+          "name": "USADF Search Grant Awards",
+          "request": {
+            "name": "USADF Search Grant Awards",
+            "description": {
+              "content": "Search for USADF grant awards using the USASpending API. Filter by award type, recipient country, time period, and other criteria. Use agencies filter with USADF toptier_code \"166\" to retrieve USADF awards.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "search",
+                "spending_by_award",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": {\n    \"agencies\": [\n      {\n        \"type\": \"<string>\",\n        \"tier\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"tier\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"award_type_codes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"time_period\": [\n      {\n        \"start_date\": \"<date>\",\n        \"end_date\": \"<date>\"\n      },\n      {\n        \"start_date\": \"<date>\",\n        \"end_date\": \"<date>\"\n      }\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"sort\": \"<string>\",\n  \"order\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ffce3fc-ae6a-4fd8-8b09-2f4468328867",
+              "name": "Grant award search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "spending_by_award",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"agencies\": [\n      {\n        \"type\": \"awarding\",\n        \"tier\": \"toptier\",\n        \"name\": \"African Development Foundation\"\n      }\n    ],\n    \"award_type_codes\": [\n      \"02\",\n      \"03\",\n      \"04\"\n    ],\n    \"time_period\": [\n      {\n        \"start_date\": \"2023-01-01\",\n        \"end_date\": \"2023-12-31\"\n      }\n    ]\n  },\n  \"fields\": [\n    \"Award ID\",\n    \"Recipient Name\",\n    \"Award Amount\",\n    \"Description\",\n    \"Place of Performance State Code\"\n  ],\n  \"limit\": 25,\n  \"page\": 1,\n  \"sort\": \"Award Amount\",\n  \"order\": \"desc\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 25,\n  \"results\": [\n    {\n      \"internal_id\": \"ASST_NON_166GH21LE0001\",\n      \"Award ID\": \"166GH21LE0001\",\n      \"Recipient Name\": \"GHANA GRASSROOTS ENTERPRISE\",\n      \"Award Amount\": 200000,\n      \"Description\": \"Community enterprise grant for agricultural cooperative development\",\n      \"Place of Performance State Code\": \"GH\"\n    }\n  ],\n  \"page_metadata\": {\n    \"page\": 1,\n    \"hasNext\": true,\n    \"total\": 180\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef114eaa-c1f2-433e-8185-364c30e0ad7e",
+              "name": "Validation error in request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "spending_by_award",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"agencies\": [\n      {\n        \"type\": \"awarding\",\n        \"tier\": \"toptier\",\n        \"name\": \"African Development Foundation\"\n      }\n    ],\n    \"award_type_codes\": [\n      \"02\",\n      \"03\",\n      \"04\"\n    ],\n    \"time_period\": [\n      {\n        \"start_date\": \"2023-01-01\",\n        \"end_date\": \"2023-12-31\"\n      }\n    ]\n  },\n  \"fields\": [\n    \"Award ID\",\n    \"Recipient Name\",\n    \"Award Amount\",\n    \"Description\",\n    \"Place of Performance State Code\"\n  ],\n  \"limit\": 25,\n  \"page\": 1,\n  \"sort\": \"Award Amount\",\n  \"order\": \"desc\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Award not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec7e3905-ec67-4784-a073-9d681978ff66",
+          "name": "USADF Get Award Details",
+          "request": {
+            "name": "USADF Get Award Details",
+            "description": {
+              "content": "Retrieve detailed information for a specific USADF grant award by its USASpending award identifier. Returns full award details including recipient, place of performance, funding agency, and transaction history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "awards",
+                ":award_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "award_id",
+                  "description": "(Required) USASpending award identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3550d0d9-53cc-4aaa-8ad4-1de0207a0ba8",
+              "name": "Award details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "awards",
+                    ":award_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "award_id",
+                      "description": "(Required) USASpending award identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ASST_NON_166GH21LE0001\",\n  \"generated_unique_award_id\": \"ASST_NON_166GH21LE0001\",\n  \"type\": \"04\",\n  \"type_description\": \"Project Grant\",\n  \"category\": \"grant\",\n  \"description\": \"Community enterprise grant for agricultural cooperative development\",\n  \"total_obligation\": 200000,\n  \"base_and_all_options_value\": 200000,\n  \"period_of_performance_start_date\": \"2021-06-01\",\n  \"period_of_performance_current_end_date\": \"2023-05-31\",\n  \"awarding_agency\": {\n    \"toptier_agency\": {\n      \"name\": \"African Development Foundation\",\n      \"abbreviation\": \"USADF\",\n      \"code\": \"166\"\n    }\n  },\n  \"recipient\": {\n    \"recipient_name\": \"GHANA GRASSROOTS ENTERPRISE\",\n    \"recipient_uei\": \"GH123456789\"\n  },\n  \"place_of_performance\": {\n    \"country_name\": \"Ghana\",\n    \"country_code\": \"GH\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2af78baa-0519-4efa-895e-68eba14bfd0d",
+              "name": "Award not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "awards",
+                    ":award_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "award_id",
+                      "description": "(Required) USASpending award identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Award not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0d47dae0-9043-41ef-9e96-602eaae4a18d",
+      "name": "Recipients",
+      "description": {
+        "content": "Organizations receiving USADF grants",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c862970f-04ef-49e5-a119-2f8d0fe5e7cc",
+          "name": "USADF Get Grant Recipient",
+          "request": {
+            "name": "USADF Get Grant Recipient",
+            "description": {
+              "content": "Retrieve detailed profile for a USADF grant recipient by their Unique Entity Identifier (UEI). Returns recipient organization details and award history summary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "recipient",
+                "duns",
+                ":uei",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<string>",
+                  "description": "Fiscal year for award data context"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uei",
+                  "description": "(Required) Unique Entity Identifier (UEI) for the recipient organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e34e915-1fa1-489a-a9d4-b4f806a493e0",
+              "name": "Recipient profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "recipient",
+                    "duns",
+                    ":uei",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "2023"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uei",
+                      "description": "(Required) Unique Entity Identifier (UEI) for the recipient organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"rec-gh-001\",\n  \"uei\": \"GH123456789\",\n  \"name\": \"GHANA GRASSROOTS ENTERPRISE\",\n  \"recipient_level\": \"R\",\n  \"location\": {\n    \"country_name\": \"Ghana\",\n    \"country_code\": \"GH\"\n  },\n  \"total_transaction_amount\": 400000,\n  \"total_transactions\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "939b4867-fe4d-451f-bb8e-3efc35e103cc",
+              "name": "Recipient not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "recipient",
+                    "duns",
+                    ":uei",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "2023"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uei",
+                      "description": "(Required) Unique Entity Identifier (UEI) for the recipient organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Award not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d93af047-05f8-4aab-91b8-56a50551c319",
+      "name": "Agency",
+      "description": {
+        "content": "USADF agency spending and budget data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f99e2062-bddd-4b04-b046-e332b67b2a5e",
+          "name": "USADF Get Agency Award Summary",
+          "request": {
+            "name": "USADF Get Agency Award Summary",
+            "description": {
+              "content": "Retrieve a summary of USADF grant award activity for a given fiscal year, including total obligations, number of awards, and breakdown by award type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "agency",
+                "166",
+                "awards",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fiscal_year",
+                  "value": "<integer>",
+                  "description": "(Required) Fiscal year for the summary"
+                },
+                {
+                  "disabled": false,
+                  "key": "award_type_codes",
+                  "value": "<string>",
+                  "description": "Comma-separated award type codes (02=Block Grant, 03=Formula Grant, 04=Project Grant)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72b87adc-ec0d-431a-9043-6010b26ef6af",
+              "name": "USADF agency award summary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "agency",
+                    "166",
+                    "awards",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fiscal_year",
+                      "value": "2023"
+                    },
+                    {
+                      "key": "award_type_codes",
+                      "value": "02,03,04"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"toptier_code\": \"166\",\n  \"fiscal_year\": 2023,\n  \"transaction_count\": 45,\n  \"award_count\": 45,\n  \"total_obligations\": 18500000,\n  \"recipient_count\": 42\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ef99797-378e-416f-a44e-d1362e21201a",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "agency",
+                    "166",
+                    "awards",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fiscal_year",
+                      "value": "2023"
+                    },
+                    {
+                      "key": "award_type_codes",
+                      "value": "02,03,04"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Award not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "adc6cbd3-672b-410b-839f-081652589a91",
+      "name": "Spending",
+      "description": {
+        "content": "USADF spending breakdowns and analytics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4af783fc-3d33-40bf-b082-bc4d0f98d312",
+          "name": "USADF Get Spending by Country",
+          "request": {
+            "name": "USADF Get Spending by Country",
+            "description": {
+              "content": "Retrieve USADF grant spending broken down by recipient country. Shows distribution of grant awards across African countries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "search",
+                "spending_by_geography",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": \"<object>\",\n  \"scope\": \"<string>\",\n  \"geo_layer\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4b8cbe9-2ecc-4962-9ffb-54ee1b4da8a7",
+              "name": "Spending breakdown by country",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "spending_by_geography",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"agencies\": [\n      {\n        \"type\": \"awarding\",\n        \"tier\": \"toptier\",\n        \"name\": \"African Development Foundation\"\n      }\n    ],\n    \"award_type_codes\": [\n      \"02\",\n      \"03\",\n      \"04\"\n    ],\n    \"time_period\": [\n      {\n        \"start_date\": \"2023-01-01\",\n        \"end_date\": \"2023-12-31\"\n      }\n    ]\n  },\n  \"scope\": \"recipient_location\",\n  \"geo_layer\": \"country\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scope\": \"recipient_location\",\n  \"geo_layer\": \"country\",\n  \"results\": [\n    {\n      \"shape_code\": \"GH\",\n      \"display_name\": \"Ghana\",\n      \"aggregated_amount\": 1800000,\n      \"award_count\": 9\n    },\n    {\n      \"shape_code\": \"KE\",\n      \"display_name\": \"Kenya\",\n      \"aggregated_amount\": 2200000,\n      \"award_count\": 11\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6fac46a-2ed8-4a55-afbc-d538c436bfa4",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "spending_by_geography",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"agencies\": [\n      {\n        \"type\": \"awarding\",\n        \"tier\": \"toptier\",\n        \"name\": \"African Development Foundation\"\n      }\n    ],\n    \"award_type_codes\": [\n      \"02\",\n      \"03\",\n      \"04\"\n    ],\n    \"time_period\": [\n      {\n        \"start_date\": \"2023-01-01\",\n        \"end_date\": \"2023-12-31\"\n      }\n    ]\n  },\n  \"scope\": \"recipient_location\",\n  \"geo_layer\": \"country\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Award not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usaspending.gov",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4d330033-f5b9-4979-a17a-9f555a1493e5",
+    "name": "USADF Grants Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to US African Development Foundation (USADF) grant award data through the USASpending.gov API. Provides programmatic access to USADF grants, awards, recipients, and spending profiles as reported to the federal awards transparency system under the Digital Accountability and Transparency (DATA) Act. USADF data uses agency code CGAC 166. This spec represents the USADF-relevant subset of the USASpending.gov API surface.\n\nContact Support:\n Name: USASpending Help Desk\n Email: usaspending.help@fiscal.treasury.gov",
+      "type": "text/plain"
+    }
+  }
+}
