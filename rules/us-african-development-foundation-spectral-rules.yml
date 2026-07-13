@@ -1,6 +1,20 @@
+# us-african-development-foundation — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - path-params-casing: snake @ 67% (n=3)
+#   - operationid-casing: camel @ 100% (n=7)
+#   - schema-names-casing: pascal @ 100% (n=14)
+#   - schema-properties-casing: snake @ 70% (n=81)
+#   - error-schema-defined: APIError
+#   - merge: kept 25 existing, added 6 measured, upgraded 0
+#   - added: path-params-casing, operationid-casing, schema-names-casing, schema-properties-casing, error-schema-defined, no-empty-descriptions
+extends:
+  - spectral:oas
 rules:
-
-  # Info Rules
   usadf-info-title-present:
     description: API info must have a title
     message: Info object must have a title
@@ -9,7 +23,6 @@ rules:
     then:
       field: title
       function: truthy
-
   usadf-info-description-present:
     description: API info must have a description
     message: Info object must have a description
@@ -18,7 +31,6 @@ rules:
     then:
       field: description
       function: truthy
-
   usadf-info-version-present:
     description: API info must have a version
     message: Info object must have a version
@@ -27,7 +39,6 @@ rules:
     then:
       field: version
       function: truthy
-
   usadf-info-contact-present:
     description: Government APIs must have contact information
     message: Info object must include contact details for government APIs
@@ -36,8 +47,6 @@ rules:
     then:
       field: contact
       function: truthy
-
-  # OpenAPI Version Rules
   usadf-openapi-version:
     description: Must use OpenAPI 3.x
     message: OpenAPI version must be 3.x
@@ -47,9 +56,7 @@ rules:
       field: openapi
       function: pattern
       functionOptions:
-        match: "^3\\."
-
-  # Server Rules
+        match: ^3\.
   usadf-servers-present:
     description: API must define servers
     message: Servers array must be defined
@@ -58,18 +65,15 @@ rules:
     then:
       field: servers
       function: truthy
-
   usadf-server-url-https:
     description: Server URLs should use HTTPS
-    message: "Server URL should use HTTPS: {{value}}"
+    message: 'Server URL should use HTTPS: {{value}}'
     severity: warn
     given: $.servers[*].url
     then:
       function: pattern
       functionOptions:
-        match: "^https://"
-
-  # Path Rules
+        match: ^https://
   usadf-paths-present:
     description: API must define paths
     message: Paths object must be defined and non-empty
@@ -78,18 +82,15 @@ rules:
     then:
       field: paths
       function: truthy
-
   usadf-path-kebab-case:
     description: Path segments should use kebab-case or underscores
-    message: "Path should use lowercase letters: {{value}}"
+    message: 'Path should use lowercase letters: {{value}}'
     severity: hint
     given: $.paths[*]~
     then:
       function: pattern
       functionOptions:
-        match: "^/[a-z0-9/_{}.-]*$"
-
-  # Operation Rules
+        match: ^/[a-z0-9/_{}.-]*$
   usadf-operation-id-present:
     description: All operations must have an operationId
     message: Operation must have an operationId
@@ -98,7 +99,6 @@ rules:
     then:
       field: operationId
       function: truthy
-
   usadf-operation-summary-present:
     description: All operations must have a summary
     message: Operation must have a summary
@@ -107,7 +107,6 @@ rules:
     then:
       field: summary
       function: truthy
-
   usadf-operation-description-present:
     description: All operations should have a description
     message: Operation should have a description
@@ -116,7 +115,6 @@ rules:
     then:
       field: description
       function: truthy
-
   usadf-operation-tags-present:
     description: All operations must have at least one tag
     message: Operation must have at least one tag
@@ -125,8 +123,6 @@ rules:
     then:
       field: tags
       function: truthy
-
-  # Response Rules
   usadf-response-description-present:
     description: All responses must have a description
     message: Response must have a description
@@ -135,7 +131,6 @@ rules:
     then:
       field: description
       function: truthy
-
   usadf-response-success-present:
     description: Operations must define a 2xx success response
     message: Operation must define a 2xx response
@@ -147,10 +142,10 @@ rules:
         schema:
           type: object
           anyOf:
-            - required: ["200"]
-            - required: ["201"]
-
-  # Schema Rules
+          - required:
+            - '200'
+          - required:
+            - '201'
   usadf-schema-description-present:
     description: All schemas should have a description
     message: Schema should have a description
@@ -159,7 +154,6 @@ rules:
     then:
       field: description
       function: truthy
-
   usadf-schema-properties-examples:
     description: Schema properties should include examples
     message: Schema property should have an example value
@@ -168,8 +162,6 @@ rules:
     then:
       field: example
       function: truthy
-
-  # Government Grant-Specific Rules
   usadf-award-amount-defined:
     description: Award schemas should define total obligation or award amount
     message: Award schema should define total_obligation or estimatedTotalProgramFunding
@@ -178,7 +170,6 @@ rules:
     then:
       field: total_obligation
       function: truthy
-
   usadf-opportunity-dates-defined:
     description: Grant opportunity schemas must define open and close dates
     message: Opportunity schema should define openDate and closeDate
@@ -187,7 +178,6 @@ rules:
     then:
       field: closeDate
       function: truthy
-
   usadf-opportunity-status-enum:
     description: Grant opportunity status should use an enum
     message: Opportunity status should define an enum
@@ -196,7 +186,6 @@ rules:
     then:
       field: enum
       function: truthy
-
   usadf-award-category-enum:
     description: Award category should use an enum
     message: Award category should define an enum of valid values
@@ -205,8 +194,6 @@ rules:
     then:
       field: enum
       function: truthy
-
-  # HTTP Method Rules
   usadf-get-no-request-body:
     description: GET operations should not have a request body
     message: GET operation should not have a request body
@@ -215,8 +202,6 @@ rules:
     then:
       field: requestBody
       function: falsy
-
-  # Quality Rules
   usadf-microcks-operation-present:
     description: Operations should include Microcks extension for mocking
     message: Operation should have x-microcks-operation extension
@@ -225,7 +210,6 @@ rules:
     then:
       field: x-microcks-operation
       function: truthy
-
   usadf-examples-in-responses:
     description: Responses should include examples
     message: Response content should include examples
@@ -234,7 +218,6 @@ rules:
     then:
       field: examples
       function: truthy
-
   usadf-parameter-description:
     description: Parameters should have descriptions
     message: Parameter should have a description
@@ -242,4 +225,51 @@ rules:
     given: $.paths[*][get,post,put,patch,delete].parameters[*]
     then:
       field: description
+      function: truthy
+  path-params-casing:
+    description: Path parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: snake
+  operationid-casing:
+    description: Operation IDs should be camelCase (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        match: ^[A-Z][A-Za-z0-9]*$
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: info
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  error-schema-defined:
+    description: A shared error schema (APIError) should be defined for error payloads.
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: APIError
+      function: truthy
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
       function: truthy
