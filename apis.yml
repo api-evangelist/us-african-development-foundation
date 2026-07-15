@@ -67,6 +67,8 @@ apis:
       - type: JSONSchema
         url: json-schema/grant-opportunities-api-opportunity-schema.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/us-african-development-foundation-agentic-access.yml
   - type: DomainSecurity
     url: security/us-african-development-foundation-domain-security.yml
   - type: LinkedIn
