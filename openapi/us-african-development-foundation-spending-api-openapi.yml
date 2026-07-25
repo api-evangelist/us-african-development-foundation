@@ -1,0 +1,153 @@
+openapi: 3.0.3
+info:
+  title: USADF Grant Opportunities Agency Spending API
+  description: Access to US African Development Foundation (USADF) grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, social entrepreneurs, and community organizations seeking funding for African-led development initiatives. USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant subset of the Grants.gov API.
+  version: 1.0.0
+  contact:
+    name: Grants.gov Contact Center
+    url: https://www.grants.gov/developers.html
+  x-generated-from: documentation
+servers:
+- url: https://apply07.grants.gov/grantsws/rest
+  description: Grants.gov REST API
+security: []
+tags:
+- name: Spending
+  description: USADF spending breakdowns and analytics
+paths:
+  /api/v2/search/spending_by_geography/:
+    post:
+      operationId: getSpendingByCountry
+      summary: USADF Get Spending by Country
+      description: Retrieve USADF grant spending broken down by recipient country. Shows distribution of grant awards across African countries.
+      tags:
+      - Spending
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpendingByGeographyRequest'
+            examples:
+              getSpendingByCountryRequestExample:
+                summary: Default getSpendingByCountry request
+                x-microcks-default: true
+                value:
+                  filters:
+                    agencies:
+                    - type: awarding
+                      tier: toptier
+                      name: African Development Foundation
+                    award_type_codes:
+                    - '02'
+                    - '03'
+                    - '04'
+                    time_period:
+                    - start_date: '2023-01-01'
+                      end_date: '2023-12-31'
+                  scope: recipient_location
+                  geo_layer: country
+      responses:
+        '200':
+          description: Spending breakdown by country
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpendingByGeographyResponse'
+              examples:
+                getSpendingByCountry200Example:
+                  summary: Default getSpendingByCountry 200 response
+                  x-microcks-default: true
+                  value:
+                    scope: recipient_location
+                    geo_layer: country
+                    results:
+                    - shape_code: GH
+                      display_name: Ghana
+                      aggregated_amount: 1800000.0
+                      award_count: 9
+                    - shape_code: KE
+                      display_name: Kenya
+                      aggregated_amount: 2200000.0
+                      award_count: 11
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        detail:
+          type: string
+          description: Error detail message
+          example: Award not found.
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
+    SpendingByGeographyResponse:
+      type: object
+      description: Grant spending breakdown by country
+      properties:
+        scope:
+          type: string
+          example: recipient_location
+        geo_layer:
+          type: string
+          example: country
+        results:
+          type: array
+          description: Geographic spending breakdown
+          items:
+            type: object
+            properties:
+              shape_code:
+                type: string
+                description: Country/state code
+                example: GH
+              display_name:
+                type: string
+                description: Country/region name
+                example: Ghana
+              aggregated_amount:
+                type: number
+                description: Total award amount
+                example: 1800000.0
+              award_count:
+                type: integer
+                description: Number of awards
+                example: 9
+    SpendingByGeographyRequest:
+      type: object
+      description: Request for spending breakdown by geographic location
+      properties:
+        filters:
+          type: object
+          description: Search filters (same structure as award search)
+        scope:
+          type: string
+          description: Geographic scope
+          enum:
+          - recipient_location
+          - place_of_performance
+          example: recipient_location
+        geo_layer:
+          type: string
+          description: Geographic layer for aggregation
+          enum:
+          - country
+          - state
+          - county
+          - district
+          example: country
+externalDocs:
+  description: Grants.gov Developer Resources
+  url: https://www.grants.gov/developers.html

@@ -1,0 +1,131 @@
+openapi: 3.0.3
+info:
+  title: USADF Grant Opportunities Agency Recipients API
+  description: Access to US African Development Foundation (USADF) grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, social entrepreneurs, and community organizations seeking funding for African-led development initiatives. USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant subset of the Grants.gov API.
+  version: 1.0.0
+  contact:
+    name: Grants.gov Contact Center
+    url: https://www.grants.gov/developers.html
+  x-generated-from: documentation
+servers:
+- url: https://apply07.grants.gov/grantsws/rest
+  description: Grants.gov REST API
+security: []
+tags:
+- name: Recipients
+  description: Organizations receiving USADF grants
+paths:
+  /api/v2/recipient/duns/{uei}/:
+    get:
+      operationId: getRecipient
+      summary: USADF Get Grant Recipient
+      description: Retrieve detailed profile for a USADF grant recipient by their Unique Entity Identifier (UEI). Returns recipient organization details and award history summary.
+      tags:
+      - Recipients
+      parameters:
+      - name: uei
+        in: path
+        required: true
+        description: Unique Entity Identifier (UEI) for the recipient organization
+        schema:
+          type: string
+        example: GH123456789
+      - name: year
+        in: query
+        description: Fiscal year for award data context
+        schema:
+          type: string
+        example: '2023'
+      responses:
+        '200':
+          description: Recipient profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+              examples:
+                getRecipient200Example:
+                  summary: Default getRecipient 200 response
+                  x-microcks-default: true
+                  value:
+                    id: rec-gh-001
+                    uei: GH123456789
+                    name: GHANA GRASSROOTS ENTERPRISE
+                    recipient_level: R
+                    location:
+                      country_name: Ghana
+                      country_code: GH
+                    total_transaction_amount: 400000.0
+                    total_transactions: 2
+        '404':
+          description: Recipient not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        detail:
+          type: string
+          description: Error detail message
+          example: Award not found.
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
+    Recipient:
+      type: object
+      description: Full profile of a USADF grant recipient organization
+      properties:
+        id:
+          type: string
+          description: Recipient identifier
+          example: rec-gh-001
+        uei:
+          type: string
+          description: Unique Entity Identifier
+          example: GH123456789
+        name:
+          type: string
+          description: Organization name
+          example: GHANA GRASSROOTS ENTERPRISE
+        recipient_level:
+          type: string
+          description: Recipient level (R=recipient, C=child)
+          example: R
+        location:
+          $ref: '#/components/schemas/PlaceOfPerformance'
+        total_transaction_amount:
+          type: number
+          description: Total award amount received
+          example: 400000.0
+        total_transactions:
+          type: integer
+          description: Total number of awards received
+          example: 2
+    PlaceOfPerformance:
+      type: object
+      description: Geographic location for award performance
+      properties:
+        country_name:
+          type: string
+          description: Country name
+          example: Ghana
+        country_code:
+          type: string
+          description: ISO country code
+          example: GH
+        city_name:
+          type: string
+          description: City name
+          example: Accra
+externalDocs:
+  description: Grants.gov Developer Resources
+  url: https://www.grants.gov/developers.html

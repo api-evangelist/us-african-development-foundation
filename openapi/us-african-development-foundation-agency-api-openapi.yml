@@ -1,0 +1,110 @@
+openapi: 3.0.3
+info:
+  title: USADF Grant Opportunities Agency API
+  description: Access to US African Development Foundation (USADF) grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, social entrepreneurs, and community organizations seeking funding for African-led development initiatives. USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant subset of the Grants.gov API.
+  version: 1.0.0
+  contact:
+    name: Grants.gov Contact Center
+    url: https://www.grants.gov/developers.html
+  x-generated-from: documentation
+servers:
+- url: https://apply07.grants.gov/grantsws/rest
+  description: Grants.gov REST API
+security: []
+tags:
+- name: Agency
+  description: USADF agency spending and budget data
+paths:
+  /api/v2/agency/166/awards/:
+    get:
+      operationId: getAgencyAwards
+      summary: USADF Get Agency Award Summary
+      description: Retrieve a summary of USADF grant award activity for a given fiscal year, including total obligations, number of awards, and breakdown by award type.
+      tags:
+      - Agency
+      parameters:
+      - name: fiscal_year
+        in: query
+        description: Fiscal year for the summary
+        required: true
+        schema:
+          type: integer
+        example: 2023
+      - name: award_type_codes
+        in: query
+        description: Comma-separated award type codes (02=Block Grant, 03=Formula Grant, 04=Project Grant)
+        schema:
+          type: string
+        example: 02,03,04
+      responses:
+        '200':
+          description: USADF agency award summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgencyAwardSummary'
+              examples:
+                getAgencyAwards200Example:
+                  summary: Default getAgencyAwards 200 response
+                  x-microcks-default: true
+                  value:
+                    toptier_code: '166'
+                    fiscal_year: 2023
+                    transaction_count: 45
+                    award_count: 45
+                    total_obligations: 18500000.0
+                    recipient_count: 42
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        detail:
+          type: string
+          description: Error detail message
+          example: Award not found.
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
+    AgencyAwardSummary:
+      type: object
+      description: Summary of USADF agency award activity for a fiscal year
+      properties:
+        toptier_code:
+          type: string
+          description: USADF toptier agency code
+          example: '166'
+        fiscal_year:
+          type: integer
+          description: Fiscal year
+          example: 2023
+        transaction_count:
+          type: integer
+          description: Total number of award transactions
+          example: 45
+        award_count:
+          type: integer
+          description: Total number of unique awards
+          example: 45
+        total_obligations:
+          type: number
+          description: Total obligations in USD
+          example: 18500000.0
+        recipient_count:
+          type: integer
+          description: Number of unique recipients
+          example: 42
+externalDocs:
+  description: Grants.gov Developer Resources
+  url: https://www.grants.gov/developers.html

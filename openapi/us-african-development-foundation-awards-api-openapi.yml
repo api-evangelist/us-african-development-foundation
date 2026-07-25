@@ -1,0 +1,364 @@
+openapi: 3.0.3
+info:
+  title: USADF Grant Opportunities Agency Awards API
+  description: Access to US African Development Foundation (USADF) grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, social entrepreneurs, and community organizations seeking funding for African-led development initiatives. USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant subset of the Grants.gov API.
+  version: 1.0.0
+  contact:
+    name: Grants.gov Contact Center
+    url: https://www.grants.gov/developers.html
+  x-generated-from: documentation
+servers:
+- url: https://apply07.grants.gov/grantsws/rest
+  description: Grants.gov REST API
+security: []
+tags:
+- name: Awards
+  description: USADF grant award data
+paths:
+  /api/v2/search/spending_by_award/:
+    post:
+      operationId: searchAwards
+      summary: USADF Search Grant Awards
+      description: Search for USADF grant awards using the USASpending API. Filter by award type, recipient country, time period, and other criteria. Use agencies filter with USADF toptier_code "166" to retrieve USADF awards.
+      tags:
+      - Awards
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AwardSearchRequest'
+            examples:
+              searchAwardsRequestExample:
+                summary: Default searchAwards request
+                x-microcks-default: true
+                value:
+                  filters:
+                    agencies:
+                    - type: awarding
+                      tier: toptier
+                      name: African Development Foundation
+                    award_type_codes:
+                    - '02'
+                    - '03'
+                    - '04'
+                    time_period:
+                    - start_date: '2023-01-01'
+                      end_date: '2023-12-31'
+                  fields:
+                  - Award ID
+                  - Recipient Name
+                  - Award Amount
+                  - Description
+                  - Place of Performance State Code
+                  limit: 25
+                  page: 1
+                  sort: Award Amount
+                  order: desc
+      responses:
+        '200':
+          description: Grant award search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AwardSearchResponse'
+              examples:
+                searchAwards200Example:
+                  summary: Default searchAwards 200 response
+                  x-microcks-default: true
+                  value:
+                    limit: 25
+                    results:
+                    - internal_id: ASST_NON_166GH21LE0001
+                      Award ID: 166GH21LE0001
+                      Recipient Name: GHANA GRASSROOTS ENTERPRISE
+                      Award Amount: 200000.0
+                      Description: Community enterprise grant for agricultural cooperative development
+                      Place of Performance State Code: GH
+                    page_metadata:
+                      page: 1
+                      hasNext: true
+                      total: 180
+        '422':
+          description: Validation error in request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v2/awards/{award_id}/:
+    get:
+      operationId: getAward
+      summary: USADF Get Award Details
+      description: Retrieve detailed information for a specific USADF grant award by its USASpending award identifier. Returns full award details including recipient, place of performance, funding agency, and transaction history.
+      tags:
+      - Awards
+      parameters:
+      - name: award_id
+        in: path
+        required: true
+        description: USASpending award identifier
+        schema:
+          type: string
+        example: ASST_NON_166GH21LE0001
+      responses:
+        '200':
+          description: Award details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Award'
+              examples:
+                getAward200Example:
+                  summary: Default getAward 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ASST_NON_166GH21LE0001
+                    generated_unique_award_id: ASST_NON_166GH21LE0001
+                    type: '04'
+                    type_description: Project Grant
+                    category: grant
+                    description: Community enterprise grant for agricultural cooperative development
+                    total_obligation: 200000.0
+                    base_and_all_options_value: 200000.0
+                    period_of_performance_start_date: '2021-06-01'
+                    period_of_performance_current_end_date: '2023-05-31'
+                    awarding_agency:
+                      toptier_agency:
+                        name: African Development Foundation
+                        abbreviation: USADF
+                        code: '166'
+                    recipient:
+                      recipient_name: GHANA GRASSROOTS ENTERPRISE
+                      recipient_uei: GH123456789
+                    place_of_performance:
+                      country_name: Ghana
+                      country_code: GH
+        '404':
+          description: Award not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Award:
+      type: object
+      description: A USADF grant award record from USASpending
+      properties:
+        id:
+          type: string
+          description: USASpending internal award identifier
+          example: ASST_NON_166GH21LE0001
+        generated_unique_award_id:
+          type: string
+          description: Generated unique award identifier
+          example: ASST_NON_166GH21LE0001
+        type:
+          type: string
+          description: Award type code
+          example: '04'
+        type_description:
+          type: string
+          description: Award type description
+          example: Project Grant
+        category:
+          type: string
+          description: Award category
+          enum:
+          - grant
+          - contract
+          - loan
+          - direct payment
+          - other
+          example: grant
+        description:
+          type: string
+          description: Award description
+          example: Community enterprise grant for agricultural cooperative development
+        total_obligation:
+          type: number
+          description: Total obligated amount in USD
+          example: 200000.0
+        base_and_all_options_value:
+          type: number
+          description: Base and all options value in USD
+          example: 200000.0
+        period_of_performance_start_date:
+          type: string
+          format: date
+          description: Grant performance start date
+          example: '2021-06-01'
+        period_of_performance_current_end_date:
+          type: string
+          format: date
+          description: Grant performance end date
+          example: '2023-05-31'
+        awarding_agency:
+          type: object
+          description: Awarding agency details
+          properties:
+            toptier_agency:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: African Development Foundation
+                abbreviation:
+                  type: string
+                  example: USADF
+                code:
+                  type: string
+                  example: '166'
+        recipient:
+          $ref: '#/components/schemas/RecipientSummary'
+        place_of_performance:
+          $ref: '#/components/schemas/PlaceOfPerformance'
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        detail:
+          type: string
+          description: Error detail message
+          example: Award not found.
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
+    RecipientSummary:
+      type: object
+      description: Summary of a grant recipient
+      properties:
+        recipient_name:
+          type: string
+          description: Organization name
+          example: GHANA GRASSROOTS ENTERPRISE
+        recipient_uei:
+          type: string
+          description: Unique Entity Identifier
+          example: GH123456789
+    AwardSearchRequest:
+      type: object
+      description: Request body for searching USADF grant awards
+      properties:
+        filters:
+          type: object
+          description: Search filters
+          properties:
+            agencies:
+              type: array
+              description: Agency filters
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: awarding
+                  tier:
+                    type: string
+                    example: toptier
+                  name:
+                    type: string
+                    example: African Development Foundation
+            award_type_codes:
+              type: array
+              description: Award type codes (02=Block Grant, 03=Formula Grant, 04=Project Grant)
+              items:
+                type: string
+              example:
+              - '02'
+              - '03'
+              - '04'
+            time_period:
+              type: array
+              description: Date range filters
+              items:
+                type: object
+                properties:
+                  start_date:
+                    type: string
+                    format: date
+                    example: '2023-01-01'
+                  end_date:
+                    type: string
+                    format: date
+                    example: '2023-12-31'
+        fields:
+          type: array
+          description: Fields to include in results
+          items:
+            type: string
+          example:
+          - Award ID
+          - Recipient Name
+          - Award Amount
+        limit:
+          type: integer
+          description: Results per page
+          example: 25
+        page:
+          type: integer
+          description: Page number
+          example: 1
+        sort:
+          type: string
+          description: Sort field
+          example: Award Amount
+        order:
+          type: string
+          description: Sort order
+          enum:
+          - asc
+          - desc
+          example: desc
+    AwardSearchResponse:
+      type: object
+      description: Search results for USADF grant awards
+      properties:
+        limit:
+          type: integer
+          description: Page size
+          example: 25
+        results:
+          type: array
+          description: Award search results
+          items:
+            type: object
+        page_metadata:
+          type: object
+          description: Pagination metadata
+          properties:
+            page:
+              type: integer
+              example: 1
+            hasNext:
+              type: boolean
+              example: true
+            total:
+              type: integer
+              example: 180
+    PlaceOfPerformance:
+      type: object
+      description: Geographic location for award performance
+      properties:
+        country_name:
+          type: string
+          description: Country name
+          example: Ghana
+        country_code:
+          type: string
+          description: ISO country code
+          example: GH
+        city_name:
+          type: string
+          description: City name
+          example: Accra
+externalDocs:
+  description: Grants.gov Developer Resources
+  url: https://www.grants.gov/developers.html
