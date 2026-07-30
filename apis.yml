@@ -9,7 +9,19 @@ tags:
   - Nonprofit
   - Economic Development
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/us-african-development-foundation.png
 access: 3rd-Party
 created: '2024-11-20'
 modified: '2026-05-19'
@@ -23,49 +35,106 @@ description: >-
   enterprises in Africa, directly affecting 6.2 million people.
 specificationVersion: '0.19'
 apis:
-  - aid: us-african-development-foundation:grants-api
-    name: USADF Grants Data API
-    description: >-
-      Access to USADF grant award data through the USASpending.gov API. Provides programmatic access to USADF grants,
-      awards, recipients, and spending profiles as reported to the federal awards transparency system. USADF data is
-      available via the USASpending API using the USADF agency identifier (CGAC 166).
-    humanURL: https://www.usaspending.gov/agency/african-development-foundation
-    baseURL: https://api.usaspending.gov
-    tags:
-      - Grants
-      - Awards
-      - Spending
-      - Transparency
-      - Federal Awards
-    properties:
-      - type: Documentation
-        url: https://api.usaspending.gov/docs/endpoints
-      - type: OpenAPI
-        url: openapi/usadf-grants-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/grants-api-award-schema.json
-      - type: JSONSchema
-        url: json-schema/grants-api-recipient-schema.json
-  - aid: us-african-development-foundation:grant-opportunities-api
-    name: USADF Grant Opportunities API
-    description: >-
-      Access to USADF grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on
-      Grants.gov for African grassroots enterprises, cooperatives, and social entrepreneurs seeking funding. Grant
-      amounts up to $250,000 for African-led development initiatives.
-    humanURL: https://www.grants.gov/search-grants?agencyCode=ADF
-    baseURL: https://apply07.grants.gov
-    tags:
-      - Grant Opportunities
-      - Funding
-      - Applications
-      - Africa
-    properties:
-      - type: Documentation
-        url: https://www.grants.gov/developers.html
-      - type: OpenAPI
-        url: openapi/usadf-grant-opportunities-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/grant-opportunities-api-opportunity-schema.json
+- aid: us-african-development-foundation:us-african-development-foundation-agency-api
+  name: US African Development Foundation Agency API
+  description: USADF agency spending and budget data
+  humanURL: https://www.usaspending.gov/agency/african-development-foundation
+  baseURL: https://api.usaspending.gov
+  tags:
+  - Agency
+  properties:
+  - type: OpenAPI
+    url: openapi/us-african-development-foundation-agency-api-openapi.yml
+  - type: Documentation
+    url: https://api.usaspending.gov/docs/endpoints
+  - type: JSONSchema
+    url: json-schema/grants-api-award-schema.json
+  - type: JSONSchema
+    url: json-schema/grants-api-recipient-schema.json
+  - type: Documentation
+    url: https://www.grants.gov/developers.html
+  - type: JSONSchema
+    url: json-schema/grant-opportunities-api-opportunity-schema.json
+- aid: us-african-development-foundation:us-african-development-foundation-awards-api
+  name: US African Development Foundation Awards API
+  description: USADF grant award data
+  humanURL: https://www.usaspending.gov/agency/african-development-foundation
+  baseURL: https://api.usaspending.gov
+  tags:
+  - Awards
+  properties:
+  - type: OpenAPI
+    url: openapi/us-african-development-foundation-awards-api-openapi.yml
+  - type: Documentation
+    url: https://api.usaspending.gov/docs/endpoints
+  - type: JSONSchema
+    url: json-schema/grants-api-award-schema.json
+  - type: JSONSchema
+    url: json-schema/grants-api-recipient-schema.json
+  - type: Documentation
+    url: https://www.grants.gov/developers.html
+  - type: JSONSchema
+    url: json-schema/grant-opportunities-api-opportunity-schema.json
+- aid: us-african-development-foundation:us-african-development-foundation-opportunities-api
+  name: US African Development Foundation Opportunities API
+  description: USADF grant opportunity listings on Grants.gov
+  humanURL: https://www.usaspending.gov/agency/african-development-foundation
+  baseURL: https://api.usaspending.gov
+  tags:
+  - Opportunities
+  properties:
+  - type: OpenAPI
+    url: openapi/us-african-development-foundation-opportunities-api-openapi.yml
+  - type: Documentation
+    url: https://api.usaspending.gov/docs/endpoints
+  - type: JSONSchema
+    url: json-schema/grants-api-award-schema.json
+  - type: JSONSchema
+    url: json-schema/grants-api-recipient-schema.json
+  - type: Documentation
+    url: https://www.grants.gov/developers.html
+  - type: JSONSchema
+    url: json-schema/grant-opportunities-api-opportunity-schema.json
+- aid: us-african-development-foundation:us-african-development-foundation-recipients-api
+  name: US African Development Foundation Recipients API
+  description: Organizations receiving USADF grants
+  humanURL: https://www.usaspending.gov/agency/african-development-foundation
+  baseURL: https://api.usaspending.gov
+  tags:
+  - Recipients
+  properties:
+  - type: OpenAPI
+    url: openapi/us-african-development-foundation-recipients-api-openapi.yml
+  - type: Documentation
+    url: https://api.usaspending.gov/docs/endpoints
+  - type: JSONSchema
+    url: json-schema/grants-api-award-schema.json
+  - type: JSONSchema
+    url: json-schema/grants-api-recipient-schema.json
+  - type: Documentation
+    url: https://www.grants.gov/developers.html
+  - type: JSONSchema
+    url: json-schema/grant-opportunities-api-opportunity-schema.json
+- aid: us-african-development-foundation:us-african-development-foundation-spending-api
+  name: US African Development Foundation Spending API
+  description: USADF spending breakdowns and analytics
+  humanURL: https://www.usaspending.gov/agency/african-development-foundation
+  baseURL: https://api.usaspending.gov
+  tags:
+  - Spending
+  properties:
+  - type: OpenAPI
+    url: openapi/us-african-development-foundation-spending-api-openapi.yml
+  - type: Documentation
+    url: https://api.usaspending.gov/docs/endpoints
+  - type: JSONSchema
+    url: json-schema/grants-api-award-schema.json
+  - type: JSONSchema
+    url: json-schema/grants-api-recipient-schema.json
+  - type: Documentation
+    url: https://www.grants.gov/developers.html
+  - type: JSONSchema
+    url: json-schema/grant-opportunities-api-opportunity-schema.json
 common:
   - type: AgenticAccess
     url: agentic-access/us-african-development-foundation-agentic-access.yml
