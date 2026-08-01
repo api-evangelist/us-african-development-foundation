@@ -1,0 +1,22 @@
+{
+  "provider": "us-african-development-foundation",
+  "sources": [
+    "us-african-development-foundation-agency-api-openapi.yml",
+    "us-african-development-foundation-awards-api-openapi.yml",
+    "us-african-development-foundation-opportunities-api-openapi.yml",
+    "us-african-development-foundation-recipients-api-openapi.yml",
+    "us-african-development-foundation-spending-api-openapi.yml"
+  ],
+  "outputs": [
+    "us-african-development-foundation-agency-api-openapi.yml",
+    "us-african-development-foundation-awards-api-openapi.yml",
+    "us-african-development-foundation-opportunities-api-openapi.yml",
+    "us-african-development-foundation-recipients-api-openapi.yml",
+    "us-african-development-foundation-spending-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
