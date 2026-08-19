@@ -33,7 +33,7 @@ description: >-
   and entrepreneurs. USADF grant data is publicly accessible via the USASpending.gov API, and grant opportunities are
   posted to Grants.gov. Between 2019 and 2023, USADF awarded more than $141 million in grants to over 1,050 community
   enterprises in Africa, directly affecting 6.2 million people.
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: us-african-development-foundation:us-african-development-foundation-agency-api
   name: US African Development Foundation Agency API
