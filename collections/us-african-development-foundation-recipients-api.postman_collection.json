@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "73e45eac-a45c-45ce-ae32-ebe66326dbf9",
+      "name": "Recipients",
+      "description": {
+        "content": "Organizations receiving USADF grants",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "00199eb4-d0f0-4382-a7ac-891addc8bd21",
+          "name": "USADF Get Grant Recipient",
+          "request": {
+            "name": "USADF Get Grant Recipient",
+            "description": {
+              "content": "Retrieve detailed profile for a USADF grant recipient by their Unique Entity Identifier (UEI). Returns recipient organization details and award history summary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "recipient",
+                "duns",
+                ":uei",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<string>",
+                  "description": "Fiscal year for award data context"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uei",
+                  "description": "(Required) Unique Entity Identifier (UEI) for the recipient organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03a9211f-d490-401b-a4e6-c903dc04f0b3",
+              "name": "Recipient profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "recipient",
+                    "duns",
+                    ":uei",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "2023"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uei",
+                      "description": "(Required) Unique Entity Identifier (UEI) for the recipient organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"rec-gh-001\",\n  \"uei\": \"GH123456789\",\n  \"name\": \"GHANA GRASSROOTS ENTERPRISE\",\n  \"recipient_level\": \"R\",\n  \"location\": {\n    \"country_name\": \"Ghana\",\n    \"country_code\": \"GH\"\n  },\n  \"total_transaction_amount\": 400000,\n  \"total_transactions\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4920f633-1272-432c-b190-e3cbdfba449c",
+              "name": "Recipient not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "recipient",
+                    "duns",
+                    ":uei",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "2023"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uei",
+                      "description": "(Required) Unique Entity Identifier (UEI) for the recipient organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Award not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apply07.grants.gov/grantsws/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "34f2cc91-9a23-40b7-8d58-ad57cbdf858c",
+    "name": "USADF Grant Opportunities Agency Recipients API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to US African Development Foundation (USADF) grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, social entrepreneurs, and community organizations seeking funding for African-led development initiatives. USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant subset of the Grants.gov API.\n\nContact Support:\n Name: Grants.gov Contact Center",
+      "type": "text/plain"
+    }
+  }
+}

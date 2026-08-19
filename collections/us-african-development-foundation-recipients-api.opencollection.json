@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USADF Grant Opportunities Agency Recipients API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recipients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "USADF Get Grant Recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apply07.grants.gov/grantsws/rest/api/v2/recipient/duns/:uei/",
+            "params": [
+              {
+                "name": "uei",
+                "value": "GH123456789",
+                "type": "path",
+                "description": "Unique Entity Identifier (UEI) for the recipient organization"
+              },
+              {
+                "name": "year",
+                "value": "2023",
+                "type": "query",
+                "description": "Fiscal year for award data context"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed profile for a USADF grant recipient by their Unique Entity Identifier (UEI). Returns recipient organization details and award history summary."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,183 @@
+{
+  "item": [
+    {
+      "id": "651876cb-1973-4663-ba14-4a120549d475",
+      "name": "Agency",
+      "description": {
+        "content": "USADF agency spending and budget data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac602931-b570-4ee7-ab08-5675997ca895",
+          "name": "USADF Get Agency Award Summary",
+          "request": {
+            "name": "USADF Get Agency Award Summary",
+            "description": {
+              "content": "Retrieve a summary of USADF grant award activity for a given fiscal year, including total obligations, number of awards, and breakdown by award type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "agency",
+                "166",
+                "awards",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fiscal_year",
+                  "value": "<integer>",
+                  "description": "(Required) Fiscal year for the summary"
+                },
+                {
+                  "disabled": false,
+                  "key": "award_type_codes",
+                  "value": "<string>",
+                  "description": "Comma-separated award type codes (02=Block Grant, 03=Formula Grant, 04=Project Grant)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0cdd943f-4f87-4b65-86e2-ab06f2ebcc2d",
+              "name": "USADF agency award summary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "agency",
+                    "166",
+                    "awards",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fiscal_year",
+                      "value": "2023"
+                    },
+                    {
+                      "key": "award_type_codes",
+                      "value": "02,03,04"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"toptier_code\": \"166\",\n  \"fiscal_year\": 2023,\n  \"transaction_count\": 45,\n  \"award_count\": 45,\n  \"total_obligations\": 18500000,\n  \"recipient_count\": 42\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f273b266-0818-4eff-a494-edbc15eac3d9",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "agency",
+                    "166",
+                    "awards",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fiscal_year",
+                      "value": "2023"
+                    },
+                    {
+                      "key": "award_type_codes",
+                      "value": "02,03,04"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Award not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apply07.grants.gov/grantsws/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5e2133e4-4c73-428a-ab3e-6d7ca5c75ef4",
+    "name": "USADF Grant Opportunities Agency API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to US African Development Foundation (USADF) grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, social entrepreneurs, and community organizations seeking funding for African-led development initiatives. USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant subset of the Grants.gov API.\n\nContact Support:\n Name: Grants.gov Contact Center",
+      "type": "text/plain"
+    }
+  }
+}

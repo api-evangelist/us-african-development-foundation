@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USADF Grant Opportunities Agency Spending API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Spending",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "USADF Get Spending by Country",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apply07.grants.gov/grantsws/rest/api/v2/search/spending_by_geography/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve USADF grant spending broken down by recipient country. Shows distribution of grant awards across African countries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

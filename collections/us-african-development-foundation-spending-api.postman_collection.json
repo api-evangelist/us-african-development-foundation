@@ -1,0 +1,178 @@
+{
+  "item": [
+    {
+      "id": "1f9d51fb-04a7-4c6e-8ecf-d334afdea75f",
+      "name": "Spending",
+      "description": {
+        "content": "USADF spending breakdowns and analytics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "caeb448b-4648-491b-a313-9cd56472b866",
+          "name": "USADF Get Spending by Country",
+          "request": {
+            "name": "USADF Get Spending by Country",
+            "description": {
+              "content": "Retrieve USADF grant spending broken down by recipient country. Shows distribution of grant awards across African countries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "search",
+                "spending_by_geography",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": \"<object>\",\n  \"scope\": \"<string>\",\n  \"geo_layer\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1ab0ea0-722c-4bdc-b28b-bd7176448f2d",
+              "name": "Spending breakdown by country",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "spending_by_geography",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"agencies\": [\n      {\n        \"type\": \"awarding\",\n        \"tier\": \"toptier\",\n        \"name\": \"African Development Foundation\"\n      }\n    ],\n    \"award_type_codes\": [\n      \"02\",\n      \"03\",\n      \"04\"\n    ],\n    \"time_period\": [\n      {\n        \"start_date\": \"2023-01-01\",\n        \"end_date\": \"2023-12-31\"\n      }\n    ]\n  },\n  \"scope\": \"recipient_location\",\n  \"geo_layer\": \"country\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scope\": \"recipient_location\",\n  \"geo_layer\": \"country\",\n  \"results\": [\n    {\n      \"shape_code\": \"GH\",\n      \"display_name\": \"Ghana\",\n      \"aggregated_amount\": 1800000,\n      \"award_count\": 9\n    },\n    {\n      \"shape_code\": \"KE\",\n      \"display_name\": \"Kenya\",\n      \"aggregated_amount\": 2200000,\n      \"award_count\": 11\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5495a8d6-bdd0-4859-936a-19c40b847d26",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "search",
+                    "spending_by_geography",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"agencies\": [\n      {\n        \"type\": \"awarding\",\n        \"tier\": \"toptier\",\n        \"name\": \"African Development Foundation\"\n      }\n    ],\n    \"award_type_codes\": [\n      \"02\",\n      \"03\",\n      \"04\"\n    ],\n    \"time_period\": [\n      {\n        \"start_date\": \"2023-01-01\",\n        \"end_date\": \"2023-12-31\"\n      }\n    ]\n  },\n  \"scope\": \"recipient_location\",\n  \"geo_layer\": \"country\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Award not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apply07.grants.gov/grantsws/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ed7f351b-dad4-4c32-83be-b5df0364d624",
+    "name": "USADF Grant Opportunities Agency Spending API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to US African Development Foundation (USADF) grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, social entrepreneurs, and community organizations seeking funding for African-led development initiatives. USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant subset of the Grants.gov API.\n\nContact Support:\n Name: Grants.gov Contact Center",
+      "type": "text/plain"
+    }
+  }
+}
