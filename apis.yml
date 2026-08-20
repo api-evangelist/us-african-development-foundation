@@ -2,6 +2,13 @@ aid: us-african-development-foundation
 url: https://raw.githubusercontent.com/api-evangelist/us-african-development-foundation/refs/heads/main/apis.yml
 name: US African Development Foundation
 tags:
+  - Federal-Government
+  - International Development
+  - Africa
+  - Grants
+  - Non-Profit
+  - Economic Development
+tags_raw:
   - Federal Government
   - International Development
   - Africa
