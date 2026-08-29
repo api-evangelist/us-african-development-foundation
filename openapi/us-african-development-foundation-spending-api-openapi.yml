@@ -1,15 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: USADF Grant Opportunities Agency Spending API
-  description: Access to US African Development Foundation (USADF) grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, social entrepreneurs, and community organizations seeking funding for African-led development initiatives. USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant subset of the Grants.gov API.
+  title: USADF Grants Data Spending API
+  description: Access to US African Development Foundation (USADF) grant award data through the USASpending.gov API. Provides programmatic access to USADF grants, awards, recipients, and spending profiles as reported to the federal awards transparency system under the Digital Accountability and Transparency (DATA) Act. USADF data uses agency code CGAC 166. This spec represents the USADF-relevant subset of the USASpending.gov API surface.
   version: 1.0.0
   contact:
-    name: Grants.gov Contact Center
-    url: https://www.grants.gov/developers.html
+    name: USASpending Help Desk
+    url: https://api.usaspending.gov
+    email: usaspending.help@fiscal.treasury.gov
   x-generated-from: documentation
 servers:
-- url: https://apply07.grants.gov/grantsws/rest
-  description: Grants.gov REST API
+- url: https://api.usaspending.gov
+  description: USASpending.gov API
 security: []
 tags:
 - name: Spending
@@ -81,18 +82,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        detail:
-          type: string
-          description: Error detail message
-          example: Award not found.
-        status:
-          type: integer
-          description: HTTP status code
-          example: 404
     SpendingByGeographyResponse:
       type: object
       description: Grant spending breakdown by country
@@ -125,6 +114,18 @@ components:
                 type: integer
                 description: Number of awards
                 example: 9
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        detail:
+          type: string
+          description: Error detail message
+          example: Award not found.
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
     SpendingByGeographyRequest:
       type: object
       description: Request for spending breakdown by geographic location
@@ -149,5 +150,5 @@ components:
           - district
           example: country
 externalDocs:
-  description: Grants.gov Developer Resources
-  url: https://www.grants.gov/developers.html
+  description: USASpending API Documentation
+  url: https://api.usaspending.gov/docs/endpoints

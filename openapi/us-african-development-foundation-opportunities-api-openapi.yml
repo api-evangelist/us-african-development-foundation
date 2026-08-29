@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: USADF Grant Agency Opportunities API
+  title: USADF Grant Opportunities API
   description: Access to US African Development Foundation (USADF) grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, social entrepreneurs, and community organizations seeking funding for African-led development initiatives. USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant subset of the Grants.gov API.
   version: 1.0.0
   contact:
@@ -146,6 +146,73 @@ components:
           type: string
           description: Human-readable error message
           example: Grant opportunity not found.
+    OpportunitySearchResponse:
+      type: object
+      description: Search results for USADF grant opportunities
+      properties:
+        total:
+          type: integer
+          description: Total matching opportunities
+          example: 3
+        rows:
+          type: integer
+          description: Page size
+          example: 25
+        startRecordNum:
+          type: integer
+          description: Starting record number
+          example: 0
+        hitCount:
+          type: integer
+          description: Number of results returned
+          example: 3
+        oppHits:
+          type: array
+          description: List of matching opportunities
+          items:
+            $ref: '#/components/schemas/Opportunity'
+    OpportunitySearchRequest:
+      type: object
+      description: Request body for searching USADF grant opportunities on Grants.gov
+      properties:
+        agencyCode:
+          type: string
+          description: Agency code filter (use ADF for USADF)
+          example: ADF
+        oppStatus:
+          type: string
+          description: Opportunity status filter
+          enum:
+          - posted
+          - closed
+          - archived
+          - forecasted
+          example: posted
+        keyword:
+          type: string
+          description: Keyword search in title and description
+          example: Africa enterprise
+        rows:
+          type: integer
+          description: Number of results per page
+          default: 25
+          example: 25
+        startRecordNum:
+          type: integer
+          description: Starting record number for pagination
+          default: 0
+          example: 0
+        sortBy:
+          type: string
+          description: Sort field
+          example: openDate
+        sortOrder:
+          type: string
+          description: Sort order
+          enum:
+          - asc
+          - desc
+          example: desc
     Opportunity:
       type: object
       description: A USADF grant opportunity on Grants.gov
@@ -236,73 +303,6 @@ components:
           type: string
           description: Contact email address
           example: grants@usadf.gov
-    OpportunitySearchRequest:
-      type: object
-      description: Request body for searching USADF grant opportunities on Grants.gov
-      properties:
-        agencyCode:
-          type: string
-          description: Agency code filter (use ADF for USADF)
-          example: ADF
-        oppStatus:
-          type: string
-          description: Opportunity status filter
-          enum:
-          - posted
-          - closed
-          - archived
-          - forecasted
-          example: posted
-        keyword:
-          type: string
-          description: Keyword search in title and description
-          example: Africa enterprise
-        rows:
-          type: integer
-          description: Number of results per page
-          default: 25
-          example: 25
-        startRecordNum:
-          type: integer
-          description: Starting record number for pagination
-          default: 0
-          example: 0
-        sortBy:
-          type: string
-          description: Sort field
-          example: openDate
-        sortOrder:
-          type: string
-          description: Sort order
-          enum:
-          - asc
-          - desc
-          example: desc
-    OpportunitySearchResponse:
-      type: object
-      description: Search results for USADF grant opportunities
-      properties:
-        total:
-          type: integer
-          description: Total matching opportunities
-          example: 3
-        rows:
-          type: integer
-          description: Page size
-          example: 25
-        startRecordNum:
-          type: integer
-          description: Starting record number
-          example: 0
-        hitCount:
-          type: integer
-          description: Number of results returned
-          example: 3
-        oppHits:
-          type: array
-          description: List of matching opportunities
-          items:
-            $ref: '#/components/schemas/Opportunity'
 externalDocs:
   description: Grants.gov Developer Resources
   url: https://www.grants.gov/developers.html

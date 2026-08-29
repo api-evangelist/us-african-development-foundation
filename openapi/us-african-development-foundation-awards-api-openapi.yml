@@ -1,15 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: USADF Grant Opportunities Agency Awards API
-  description: Access to US African Development Foundation (USADF) grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, social entrepreneurs, and community organizations seeking funding for African-led development initiatives. USADF uses agency code ADF on Grants.gov. This spec represents the USADF-relevant subset of the Grants.gov API.
+  title: USADF Grants Data Awards API
+  description: Access to US African Development Foundation (USADF) grant award data through the USASpending.gov API. Provides programmatic access to USADF grants, awards, recipients, and spending profiles as reported to the federal awards transparency system under the Digital Accountability and Transparency (DATA) Act. USADF data uses agency code CGAC 166. This spec represents the USADF-relevant subset of the USASpending.gov API surface.
   version: 1.0.0
   contact:
-    name: Grants.gov Contact Center
-    url: https://www.grants.gov/developers.html
+    name: USASpending Help Desk
+    url: https://api.usaspending.gov
+    email: usaspending.help@fiscal.treasury.gov
   x-generated-from: documentation
 servers:
-- url: https://apply07.grants.gov/grantsws/rest
-  description: Grants.gov REST API
+- url: https://api.usaspending.gov
+  description: USASpending.gov API
 security: []
 tags:
 - name: Awards
@@ -147,102 +148,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Award:
-      type: object
-      description: A USADF grant award record from USASpending
-      properties:
-        id:
-          type: string
-          description: USASpending internal award identifier
-          example: ASST_NON_166GH21LE0001
-        generated_unique_award_id:
-          type: string
-          description: Generated unique award identifier
-          example: ASST_NON_166GH21LE0001
-        type:
-          type: string
-          description: Award type code
-          example: '04'
-        type_description:
-          type: string
-          description: Award type description
-          example: Project Grant
-        category:
-          type: string
-          description: Award category
-          enum:
-          - grant
-          - contract
-          - loan
-          - direct payment
-          - other
-          example: grant
-        description:
-          type: string
-          description: Award description
-          example: Community enterprise grant for agricultural cooperative development
-        total_obligation:
-          type: number
-          description: Total obligated amount in USD
-          example: 200000.0
-        base_and_all_options_value:
-          type: number
-          description: Base and all options value in USD
-          example: 200000.0
-        period_of_performance_start_date:
-          type: string
-          format: date
-          description: Grant performance start date
-          example: '2021-06-01'
-        period_of_performance_current_end_date:
-          type: string
-          format: date
-          description: Grant performance end date
-          example: '2023-05-31'
-        awarding_agency:
-          type: object
-          description: Awarding agency details
-          properties:
-            toptier_agency:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: African Development Foundation
-                abbreviation:
-                  type: string
-                  example: USADF
-                code:
-                  type: string
-                  example: '166'
-        recipient:
-          $ref: '#/components/schemas/RecipientSummary'
-        place_of_performance:
-          $ref: '#/components/schemas/PlaceOfPerformance'
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        detail:
-          type: string
-          description: Error detail message
-          example: Award not found.
-        status:
-          type: integer
-          description: HTTP status code
-          example: 404
-    RecipientSummary:
-      type: object
-      description: Summary of a grant recipient
-      properties:
-        recipient_name:
-          type: string
-          description: Organization name
-          example: GHANA GRASSROOTS ENTERPRISE
-        recipient_uei:
-          type: string
-          description: Unique Entity Identifier
-          example: GH123456789
     AwardSearchRequest:
       type: object
       description: Request body for searching USADF grant awards
@@ -317,6 +222,18 @@ components:
           - asc
           - desc
           example: desc
+    RecipientSummary:
+      type: object
+      description: Summary of a grant recipient
+      properties:
+        recipient_name:
+          type: string
+          description: Organization name
+          example: GHANA GRASSROOTS ENTERPRISE
+        recipient_uei:
+          type: string
+          description: Unique Entity Identifier
+          example: GH123456789
     AwardSearchResponse:
       type: object
       description: Search results for USADF grant awards
@@ -343,6 +260,18 @@ components:
             total:
               type: integer
               example: 180
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        detail:
+          type: string
+          description: Error detail message
+          example: Award not found.
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
     PlaceOfPerformance:
       type: object
       description: Geographic location for award performance
@@ -359,6 +288,78 @@ components:
           type: string
           description: City name
           example: Accra
+    Award:
+      type: object
+      description: A USADF grant award record from USASpending
+      properties:
+        id:
+          type: string
+          description: USASpending internal award identifier
+          example: ASST_NON_166GH21LE0001
+        generated_unique_award_id:
+          type: string
+          description: Generated unique award identifier
+          example: ASST_NON_166GH21LE0001
+        type:
+          type: string
+          description: Award type code
+          example: '04'
+        type_description:
+          type: string
+          description: Award type description
+          example: Project Grant
+        category:
+          type: string
+          description: Award category
+          enum:
+          - grant
+          - contract
+          - loan
+          - direct payment
+          - other
+          example: grant
+        description:
+          type: string
+          description: Award description
+          example: Community enterprise grant for agricultural cooperative development
+        total_obligation:
+          type: number
+          description: Total obligated amount in USD
+          example: 200000.0
+        base_and_all_options_value:
+          type: number
+          description: Base and all options value in USD
+          example: 200000.0
+        period_of_performance_start_date:
+          type: string
+          format: date
+          description: Grant performance start date
+          example: '2021-06-01'
+        period_of_performance_current_end_date:
+          type: string
+          format: date
+          description: Grant performance end date
+          example: '2023-05-31'
+        awarding_agency:
+          type: object
+          description: Awarding agency details
+          properties:
+            toptier_agency:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: African Development Foundation
+                abbreviation:
+                  type: string
+                  example: USADF
+                code:
+                  type: string
+                  example: '166'
+        recipient:
+          $ref: '#/components/schemas/RecipientSummary'
+        place_of_performance:
+          $ref: '#/components/schemas/PlaceOfPerformance'
 externalDocs:
-  description: Grants.gov Developer Resources
-  url: https://www.grants.gov/developers.html
+  description: USASpending API Documentation
+  url: https://api.usaspending.gov/docs/endpoints

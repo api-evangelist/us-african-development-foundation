@@ -1,22 +1,29 @@
 {
   "provider": "us-african-development-foundation",
   "sources": [
-    "us-african-development-foundation-agency-api-openapi.yml",
-    "us-african-development-foundation-awards-api-openapi.yml",
-    "us-african-development-foundation-opportunities-api-openapi.yml",
-    "us-african-development-foundation-recipients-api-openapi.yml",
-    "us-african-development-foundation-spending-api-openapi.yml"
+    "_original/usadf-grant-opportunities-api-openapi.yml",
+    "_original/usadf-grants-api-openapi.yml"
   ],
   "outputs": [
+    "us-african-development-foundation-opportunities-api-openapi.yml",
     "us-african-development-foundation-agency-api-openapi.yml",
     "us-african-development-foundation-awards-api-openapi.yml",
-    "us-african-development-foundation-opportunities-api-openapi.yml",
     "us-african-development-foundation-recipients-api-openapi.yml",
     "us-african-development-foundation-spending-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "usadf-grant-opportunities-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "usadf-grants-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "us-african-development-foundation-agency-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "us-african-development-foundation-awards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "us-african-development-foundation-opportunities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "us-african-development-foundation-recipients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "us-african-development-foundation-spending-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
