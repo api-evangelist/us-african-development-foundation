@@ -82,6 +82,18 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        detail:
+          type: string
+          description: Error detail message
+          example: Award not found.
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
     SpendingByGeographyResponse:
       type: object
       description: Grant spending breakdown by country
@@ -114,18 +126,6 @@ components:
                 type: integer
                 description: Number of awards
                 example: 9
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        detail:
-          type: string
-          description: Error detail message
-          example: Award not found.
-        status:
-          type: integer
-          description: HTTP status code
-          example: 404
     SpendingByGeographyRequest:
       type: object
       description: Request for spending breakdown by geographic location

@@ -148,6 +148,30 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        detail:
+          type: string
+          description: Error detail message
+          example: Award not found.
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
+    RecipientSummary:
+      type: object
+      description: Summary of a grant recipient
+      properties:
+        recipient_name:
+          type: string
+          description: Organization name
+          example: GHANA GRASSROOTS ENTERPRISE
+        recipient_uei:
+          type: string
+          description: Unique Entity Identifier
+          example: GH123456789
     AwardSearchRequest:
       type: object
       description: Request body for searching USADF grant awards
@@ -222,56 +246,6 @@ components:
           - asc
           - desc
           example: desc
-    RecipientSummary:
-      type: object
-      description: Summary of a grant recipient
-      properties:
-        recipient_name:
-          type: string
-          description: Organization name
-          example: GHANA GRASSROOTS ENTERPRISE
-        recipient_uei:
-          type: string
-          description: Unique Entity Identifier
-          example: GH123456789
-    AwardSearchResponse:
-      type: object
-      description: Search results for USADF grant awards
-      properties:
-        limit:
-          type: integer
-          description: Page size
-          example: 25
-        results:
-          type: array
-          description: Award search results
-          items:
-            type: object
-        page_metadata:
-          type: object
-          description: Pagination metadata
-          properties:
-            page:
-              type: integer
-              example: 1
-            hasNext:
-              type: boolean
-              example: true
-            total:
-              type: integer
-              example: 180
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        detail:
-          type: string
-          description: Error detail message
-          example: Award not found.
-        status:
-          type: integer
-          description: HTTP status code
-          example: 404
     PlaceOfPerformance:
       type: object
       description: Geographic location for award performance
@@ -360,6 +334,32 @@ components:
           $ref: '#/components/schemas/RecipientSummary'
         place_of_performance:
           $ref: '#/components/schemas/PlaceOfPerformance'
+    AwardSearchResponse:
+      type: object
+      description: Search results for USADF grant awards
+      properties:
+        limit:
+          type: integer
+          description: Page size
+          example: 25
+        results:
+          type: array
+          description: Award search results
+          items:
+            type: object
+        page_metadata:
+          type: object
+          description: Pagination metadata
+          properties:
+            page:
+              type: integer
+              example: 1
+            hasNext:
+              type: boolean
+              example: true
+            total:
+              type: integer
+              example: 180
 externalDocs:
   description: USASpending API Documentation
   url: https://api.usaspending.gov/docs/endpoints

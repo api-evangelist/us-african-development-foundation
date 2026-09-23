@@ -134,43 +134,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        errorCode:
-          type: string
-          description: Error code
-          example: NOT_FOUND
-        errorMessage:
-          type: string
-          description: Human-readable error message
-          example: Grant opportunity not found.
-    OpportunitySearchResponse:
-      type: object
-      description: Search results for USADF grant opportunities
-      properties:
-        total:
-          type: integer
-          description: Total matching opportunities
-          example: 3
-        rows:
-          type: integer
-          description: Page size
-          example: 25
-        startRecordNum:
-          type: integer
-          description: Starting record number
-          example: 0
-        hitCount:
-          type: integer
-          description: Number of results returned
-          example: 3
-        oppHits:
-          type: array
-          description: List of matching opportunities
-          items:
-            $ref: '#/components/schemas/Opportunity'
     OpportunitySearchRequest:
       type: object
       description: Request body for searching USADF grant opportunities on Grants.gov
@@ -303,6 +266,43 @@ components:
           type: string
           description: Contact email address
           example: grants@usadf.gov
+    OpportunitySearchResponse:
+      type: object
+      description: Search results for USADF grant opportunities
+      properties:
+        total:
+          type: integer
+          description: Total matching opportunities
+          example: 3
+        rows:
+          type: integer
+          description: Page size
+          example: 25
+        startRecordNum:
+          type: integer
+          description: Starting record number
+          example: 0
+        hitCount:
+          type: integer
+          description: Number of results returned
+          example: 3
+        oppHits:
+          type: array
+          description: List of matching opportunities
+          items:
+            $ref: '#/components/schemas/Opportunity'
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        errorCode:
+          type: string
+          description: Error code
+          example: NOT_FOUND
+        errorMessage:
+          type: string
+          description: Human-readable error message
+          example: Grant opportunity not found.
 externalDocs:
   description: Grants.gov Developer Resources
   url: https://www.grants.gov/developers.html

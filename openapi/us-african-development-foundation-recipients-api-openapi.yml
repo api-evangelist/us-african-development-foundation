@@ -69,22 +69,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    PlaceOfPerformance:
-      type: object
-      description: Geographic location for award performance
-      properties:
-        country_name:
-          type: string
-          description: Country name
-          example: Ghana
-        country_code:
-          type: string
-          description: ISO country code
-          example: GH
-        city_name:
-          type: string
-          description: City name
-          example: Accra
     APIError:
       type: object
       description: API error response
@@ -127,6 +111,22 @@ components:
           type: integer
           description: Total number of awards received
           example: 2
+    PlaceOfPerformance:
+      type: object
+      description: Geographic location for award performance
+      properties:
+        country_name:
+          type: string
+          description: Country name
+          example: Ghana
+        country_code:
+          type: string
+          description: ISO country code
+          example: GH
+        city_name:
+          type: string
+          description: City name
+          example: Accra
 externalDocs:
   description: USASpending API Documentation
   url: https://api.usaspending.gov/docs/endpoints

@@ -1,8 +1,8 @@
 {
   "provider": "us-african-development-foundation",
   "sources": [
-    "_original/usadf-grant-opportunities-api-openapi.yml",
-    "_original/usadf-grants-api-openapi.yml"
+    "_ae-authored/usadf-grant-opportunities-api-openapi.yml",
+    "_ae-authored/usadf-grants-api-openapi.yml"
   ],
   "outputs": [
     "us-african-development-foundation-opportunities-api-openapi.yml",
@@ -15,9 +15,10 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "usadf-grant-opportunities-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "usadf-grants-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+    "usadf-grants-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "us-african-development-foundation-agency-api-openapi.yml: previously refined output, superseded by openapi/_original/",
