@@ -82,6 +82,29 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    SpendingByGeographyRequest:
+      type: object
+      description: Request for spending breakdown by geographic location
+      properties:
+        filters:
+          type: object
+          description: Search filters (same structure as award search)
+        scope:
+          type: string
+          description: Geographic scope
+          enum:
+          - recipient_location
+          - place_of_performance
+          example: recipient_location
+        geo_layer:
+          type: string
+          description: Geographic layer for aggregation
+          enum:
+          - country
+          - state
+          - county
+          - district
+          example: country
     APIError:
       type: object
       description: API error response
@@ -126,29 +149,6 @@ components:
                 type: integer
                 description: Number of awards
                 example: 9
-    SpendingByGeographyRequest:
-      type: object
-      description: Request for spending breakdown by geographic location
-      properties:
-        filters:
-          type: object
-          description: Search filters (same structure as award search)
-        scope:
-          type: string
-          description: Geographic scope
-          enum:
-          - recipient_location
-          - place_of_performance
-          example: recipient_location
-        geo_layer:
-          type: string
-          description: Geographic layer for aggregation
-          enum:
-          - country
-          - state
-          - county
-          - district
-          example: country
 externalDocs:
   description: USASpending API Documentation
   url: https://api.usaspending.gov/docs/endpoints
