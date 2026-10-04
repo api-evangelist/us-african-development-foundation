@@ -69,18 +69,22 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    APIError:
+    PlaceOfPerformance:
       type: object
-      description: API error response
+      description: Geographic location for award performance
       properties:
-        detail:
+        country_name:
           type: string
-          description: Error detail message
-          example: Award not found.
-        status:
-          type: integer
-          description: HTTP status code
-          example: 404
+          description: Country name
+          example: Ghana
+        country_code:
+          type: string
+          description: ISO country code
+          example: GH
+        city_name:
+          type: string
+          description: City name
+          example: Accra
     Recipient:
       type: object
       description: Full profile of a USADF grant recipient organization
@@ -111,22 +115,18 @@ components:
           type: integer
           description: Total number of awards received
           example: 2
-    PlaceOfPerformance:
+    APIError:
       type: object
-      description: Geographic location for award performance
+      description: API error response
       properties:
-        country_name:
+        detail:
           type: string
-          description: Country name
-          example: Ghana
-        country_code:
-          type: string
-          description: ISO country code
-          example: GH
-        city_name:
-          type: string
-          description: City name
-          example: Accra
+          description: Error detail message
+          example: Award not found.
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
 externalDocs:
   description: USASpending API Documentation
   url: https://api.usaspending.gov/docs/endpoints

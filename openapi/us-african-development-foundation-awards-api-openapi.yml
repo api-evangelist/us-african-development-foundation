@@ -148,6 +148,96 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    PlaceOfPerformance:
+      type: object
+      description: Geographic location for award performance
+      properties:
+        country_name:
+          type: string
+          description: Country name
+          example: Ghana
+        country_code:
+          type: string
+          description: ISO country code
+          example: GH
+        city_name:
+          type: string
+          description: City name
+          example: Accra
+    AwardSearchRequest:
+      type: object
+      description: Request body for searching USADF grant awards
+      properties:
+        filters:
+          type: object
+          description: Search filters
+          properties:
+            agencies:
+              type: array
+              description: Agency filters
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: awarding
+                  tier:
+                    type: string
+                    example: toptier
+                  name:
+                    type: string
+                    example: African Development Foundation
+            award_type_codes:
+              type: array
+              description: Award type codes (02=Block Grant, 03=Formula Grant, 04=Project Grant)
+              items:
+                type: string
+              example:
+              - '02'
+              - '03'
+              - '04'
+            time_period:
+              type: array
+              description: Date range filters
+              items:
+                type: object
+                properties:
+                  start_date:
+                    type: string
+                    format: date
+                    example: '2023-01-01'
+                  end_date:
+                    type: string
+                    format: date
+                    example: '2023-12-31'
+        fields:
+          type: array
+          description: Fields to include in results
+          items:
+            type: string
+          example:
+          - Award ID
+          - Recipient Name
+          - Award Amount
+        limit:
+          type: integer
+          description: Results per page
+          example: 25
+        page:
+          type: integer
+          description: Page number
+          example: 1
+        sort:
+          type: string
+          description: Sort field
+          example: Award Amount
+        order:
+          type: string
+          description: Sort order
+          enum:
+          - asc
+          - desc
+          example: desc
     RecipientSummary:
       type: object
       description: Summary of a grant recipient
@@ -244,22 +334,6 @@ components:
           type: integer
           description: HTTP status code
           example: 404
-    PlaceOfPerformance:
-      type: object
-      description: Geographic location for award performance
-      properties:
-        country_name:
-          type: string
-          description: Country name
-          example: Ghana
-        country_code:
-          type: string
-          description: ISO country code
-          example: GH
-        city_name:
-          type: string
-          description: City name
-          example: Accra
     AwardSearchResponse:
       type: object
       description: Search results for USADF grant awards
@@ -286,80 +360,6 @@ components:
             total:
               type: integer
               example: 180
-    AwardSearchRequest:
-      type: object
-      description: Request body for searching USADF grant awards
-      properties:
-        filters:
-          type: object
-          description: Search filters
-          properties:
-            agencies:
-              type: array
-              description: Agency filters
-              items:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    example: awarding
-                  tier:
-                    type: string
-                    example: toptier
-                  name:
-                    type: string
-                    example: African Development Foundation
-            award_type_codes:
-              type: array
-              description: Award type codes (02=Block Grant, 03=Formula Grant, 04=Project Grant)
-              items:
-                type: string
-              example:
-              - '02'
-              - '03'
-              - '04'
-            time_period:
-              type: array
-              description: Date range filters
-              items:
-                type: object
-                properties:
-                  start_date:
-                    type: string
-                    format: date
-                    example: '2023-01-01'
-                  end_date:
-                    type: string
-                    format: date
-                    example: '2023-12-31'
-        fields:
-          type: array
-          description: Fields to include in results
-          items:
-            type: string
-          example:
-          - Award ID
-          - Recipient Name
-          - Award Amount
-        limit:
-          type: integer
-          description: Results per page
-          example: 25
-        page:
-          type: integer
-          description: Page number
-          example: 1
-        sort:
-          type: string
-          description: Sort field
-          example: Award Amount
-        order:
-          type: string
-          description: Sort order
-          enum:
-          - asc
-          - desc
-          example: desc
 externalDocs:
   description: USASpending API Documentation
   url: https://api.usaspending.gov/docs/endpoints
