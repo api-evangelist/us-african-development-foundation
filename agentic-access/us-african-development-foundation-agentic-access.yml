@@ -1,38 +1,22 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/usadf-grant-opportunities-api-openapi.yml, openapi/usadf-grants-api-openapi.yml
+source: openapi/us-african-development-foundation-agency-api-openapi.yml, openapi/us-african-development-foundation-awards-api-openapi.yml,
+  openapi/us-african-development-foundation-opportunities-api-openapi.yml, openapi/us-african-development-foundation-recipients-api-openapi.yml,
+  openapi/us-african-development-foundation-spending-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 7
   by_action_class:
-    acting: 3
-    connected: 4
+    connected: 7
   by_consequence:
-    write: 3
-    read: 4
+    read: 7
   human_in_the_loop_required: 0
 operations:
-- path: /opportunities/search
-  method: post
-  operationId: searchOpportunities
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /opportunities/{opportunityId}
+- path: /api/v2/agency/166/awards/
   method: get
-  operationId: getOpportunity
+  operationId: getAgencyAwards
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -44,18 +28,12 @@ operations:
   method: post
   operationId: searchAwards
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/awards/{award_id}/
   method: get
   operationId: getAward
@@ -66,9 +44,19 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/v2/agency/166/awards/
+- path: /opportunities/search
+  method: post
+  operationId: searchOpportunities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /opportunities/{opportunityId}
   method: get
-  operationId: getAgencyAwards
+  operationId: getOpportunity
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -90,15 +78,9 @@ operations:
   method: post
   operationId: getSpendingByCountry
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
