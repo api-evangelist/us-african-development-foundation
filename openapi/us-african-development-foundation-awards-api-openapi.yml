@@ -148,22 +148,18 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    PlaceOfPerformance:
+    RecipientSummary:
       type: object
-      description: Geographic location for award performance
+      description: Summary of a grant recipient
       properties:
-        country_name:
+        recipient_name:
           type: string
-          description: Country name
-          example: Ghana
-        country_code:
+          description: Organization name
+          example: GHANA GRASSROOTS ENTERPRISE
+        recipient_uei:
           type: string
-          description: ISO country code
-          example: GH
-        city_name:
-          type: string
-          description: City name
-          example: Accra
+          description: Unique Entity Identifier
+          example: GH123456789
     AwardSearchRequest:
       type: object
       description: Request body for searching USADF grant awards
@@ -238,18 +234,18 @@ components:
           - asc
           - desc
           example: desc
-    RecipientSummary:
+    APIError:
       type: object
-      description: Summary of a grant recipient
+      description: API error response
       properties:
-        recipient_name:
+        detail:
           type: string
-          description: Organization name
-          example: GHANA GRASSROOTS ENTERPRISE
-        recipient_uei:
-          type: string
-          description: Unique Entity Identifier
-          example: GH123456789
+          description: Error detail message
+          example: Award not found.
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
     Award:
       type: object
       description: A USADF grant award record from USASpending
@@ -322,18 +318,6 @@ components:
           $ref: '#/components/schemas/RecipientSummary'
         place_of_performance:
           $ref: '#/components/schemas/PlaceOfPerformance'
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        detail:
-          type: string
-          description: Error detail message
-          example: Award not found.
-        status:
-          type: integer
-          description: HTTP status code
-          example: 404
     AwardSearchResponse:
       type: object
       description: Search results for USADF grant awards
@@ -360,6 +344,22 @@ components:
             total:
               type: integer
               example: 180
+    PlaceOfPerformance:
+      type: object
+      description: Geographic location for award performance
+      properties:
+        country_name:
+          type: string
+          description: Country name
+          example: Ghana
+        country_code:
+          type: string
+          description: ISO country code
+          example: GH
+        city_name:
+          type: string
+          description: City name
+          example: Accra
 externalDocs:
   description: USASpending API Documentation
   url: https://api.usaspending.gov/docs/endpoints
