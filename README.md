@@ -1,4 +1,4 @@
-# US African Development Foundation (us-african-development-foundation)
+# US African Development Foundation
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,92 +66,199 @@
 
 The US African Development Foundation (USADF) is an independent federal agency established by Congress in 1980 to invest directly in African grassroots enterprises and social entrepreneurs. USADF provides grant capital of up to $250,000, capacity-building assistance, and convening opportunities to develop, grow, and scale African enterprises and entrepreneurs. USADF grant data is publicly accessible via the USASpending.gov API, and grant opportunities are posted to Grants.gov. Between 2019 and 2023, USADF awarded more than $141 million in grants to over 1,050 community enterprises in Africa, directly affecting 6.2 million people.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/us-african-development-foundation/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/us-african-development-foundation/refs/heads/main/apis.yml)
+**Areas:** Federal Government · International Development · Africa · Grants · Non-Profit · Economic Development
 
-## Scope
+## US African Development Foundation on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for US African Development Foundation is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/us-african-development-foundation/](https://apis.io/providers/us-african-development-foundation/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Federal Government
-- International Development
-- Africa
-- Grants
-- Nonprofit
-- Economic Development
+- [US African Development Foundation Agency API](https://apis.io/apis/us-african-development-foundation/us-african-development-foundation-agency-api/) — USADF agency spending and budget data
+- [US African Development Foundation Awards API](https://apis.io/apis/us-african-development-foundation/us-african-development-foundation-awards-api/) — USADF grant award data
+- [US African Development Foundation Opportunities API](https://apis.io/apis/us-african-development-foundation/us-african-development-foundation-opportunities-api/) — USADF grant opportunity listings on Grants.gov
+- [US African Development Foundation Recipients API](https://apis.io/apis/us-african-development-foundation/us-african-development-foundation-recipients-api/) — Organizations receiving USADF grants
+- [US African Development Foundation Spending API](https://apis.io/apis/us-african-development-foundation/us-african-development-foundation-spending-api/) — USADF spending breakdowns and analytics
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-11-20
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### USADF Grants Data API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Access to USADF grant award data through the USASpending.gov API. Provides programmatic access to USADF grants, awards, recipients, and spending profiles as reported to the federal awards transparency system. USADF data is available via the USASpending API using the USADF agency identifier (CGAC 166).
+- [Us African Development Foundation Agentic Access](https://apis.io/agentic-access/us-african-development-foundation/us-african-development-foundation-agentic-access/)
 
-- **Human URL:** [https://www.usaspending.gov/agency/african-development-foundation](https://www.usaspending.gov/agency/african-development-foundation)
-- **Base URL:** `https://api.usaspending.gov`
+#### JSON Schema (14)
 
-#### Tags
+The data models the API reads and writes.
 
-- Grants
-- Awards
-- Spending
-- Transparency
-- Federal Awards
+- [APIError](https://apis.io/schemas/us-african-development-foundation/grant-opportunities-api-apierror/)
+- [Opportunity](https://apis.io/schemas/us-african-development-foundation/grant-opportunities-api-opportunity/)
+- [OpportunitySearchRequest](https://apis.io/schemas/us-african-development-foundation/grant-opportunities-api-opportunitysearchrequest/)
+- [OpportunitySearchResponse](https://apis.io/schemas/us-african-development-foundation/grant-opportunities-api-opportunitysearchresponse/)
+- [AgencyAwardSummary](https://apis.io/schemas/us-african-development-foundation/grants-api-agencyawardsummary/)
+- [APIError](https://apis.io/schemas/us-african-development-foundation/grants-api-apierror/)
+- [Award](https://apis.io/schemas/us-african-development-foundation/grants-api-award/)
+- [AwardSearchRequest](https://apis.io/schemas/us-african-development-foundation/grants-api-awardsearchrequest/)
+- [AwardSearchResponse](https://apis.io/schemas/us-african-development-foundation/grants-api-awardsearchresponse/)
+- [PlaceOfPerformance](https://apis.io/schemas/us-african-development-foundation/grants-api-placeofperformance/)
+- [Recipient](https://apis.io/schemas/us-african-development-foundation/grants-api-recipient/)
+- [RecipientSummary](https://apis.io/schemas/us-african-development-foundation/grants-api-recipientsummary/)
+- [SpendingByGeographyRequest](https://apis.io/schemas/us-african-development-foundation/grants-api-spendingbygeographyrequest/)
+- [SpendingByGeographyResponse](https://apis.io/schemas/us-african-development-foundation/grants-api-spendingbygeographyresponse/)
 
-#### Properties
+#### JSON Structure (14)
 
-- [Documentation](https://api.usaspending.gov/docs/endpoints)
-- [OpenAPI](openapi/usadf-grants-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/usadf-grants-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/usadf-grants-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/grants-api-award-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/grants-api-recipient-schema.json) — [JSON Schema](https://json-schema.org/specification)
+Data models expressed in JSON Structure.
 
-### USADF Grant Opportunities API
+- [Grant Opportunities Api Apierror Structure](https://apis.io/json-structure/us-african-development-foundation/grant-opportunities-api-apierror-structure/)
+- [Grant Opportunities Api Opportunity Structure](https://apis.io/json-structure/us-african-development-foundation/grant-opportunities-api-opportunity-structure/)
+- [Grant Opportunities Api Opportunitysearchrequest Structure](https://apis.io/json-structure/us-african-development-foundation/grant-opportunities-api-opportunitysearchrequest-structure/)
+- [Grant Opportunities Api Opportunitysearchresponse Structure](https://apis.io/json-structure/us-african-development-foundation/grant-opportunities-api-opportunitysearchresponse-structure/)
+- [Grants Api Agencyawardsummary Structure](https://apis.io/json-structure/us-african-development-foundation/grants-api-agencyawardsummary-structure/)
+- [Grants Api Apierror Structure](https://apis.io/json-structure/us-african-development-foundation/grants-api-apierror-structure/)
+- [Grants Api Award Structure](https://apis.io/json-structure/us-african-development-foundation/grants-api-award-structure/)
+- [Grants Api Awardsearchrequest Structure](https://apis.io/json-structure/us-african-development-foundation/grants-api-awardsearchrequest-structure/)
+- [Grants Api Awardsearchresponse Structure](https://apis.io/json-structure/us-african-development-foundation/grants-api-awardsearchresponse-structure/)
+- [Grants Api Placeofperformance Structure](https://apis.io/json-structure/us-african-development-foundation/grants-api-placeofperformance-structure/)
+- [Grants Api Recipient Structure](https://apis.io/json-structure/us-african-development-foundation/grants-api-recipient-structure/)
+- [Grants Api Recipientsummary Structure](https://apis.io/json-structure/us-african-development-foundation/grants-api-recipientsummary-structure/)
+- [Grants Api Spendingbygeographyrequest Structure](https://apis.io/json-structure/us-african-development-foundation/grants-api-spendingbygeographyrequest-structure/)
+- [Grants Api Spendingbygeographyresponse Structure](https://apis.io/json-structure/us-african-development-foundation/grants-api-spendingbygeographyresponse-structure/)
 
-Access to USADF grant opportunity listings through the Grants.gov API. USADF posts open grant solicitations on Grants.gov for African grassroots enterprises, cooperatives, and social entrepreneurs seeking funding. Grant amounts up to $250,000 for African-led development initiatives.
+#### JSON-LD (1)
 
-- **Human URL:** [https://www.grants.gov/search-grants?agencyCode=ADF](https://www.grants.gov/search-grants?agencyCode=ADF)
-- **Base URL:** `https://apply07.grants.gov`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Us African Development Foundation Context](https://apis.io/jsonld/us-african-development-foundation/us-african-development-foundation-context/)
 
-- Grant Opportunities
-- Funding
-- Applications
-- Africa
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://www.grants.gov/developers.html)
-- [OpenAPI](openapi/usadf-grant-opportunities-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/usadf-grant-opportunities-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/usadf-grant-opportunities-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/grant-opportunities-api-opportunity-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [US African Development Foundation Vocabulary](https://apis.io/vocabularies/us-african-development-foundation/us-african-development-foundation-vocabulary/)
 
-## Common Properties
+#### Examples (14)
 
-- [LinkedIn](https://www.linkedin.com/company/usadf)
+Example requests and responses.
+
+- [Grant Opportunities Api Apierror Example](https://apis.io/examples/us-african-development-foundation/grant-opportunities-api-apierror-example/)
+- [Grant Opportunities Api Opportunity Example](https://apis.io/examples/us-african-development-foundation/grant-opportunities-api-opportunity-example/)
+- [Grant Opportunities Api Opportunitysearchrequest Example](https://apis.io/examples/us-african-development-foundation/grant-opportunities-api-opportunitysearchrequest-example/)
+- [Grant Opportunities Api Opportunitysearchresponse Example](https://apis.io/examples/us-african-development-foundation/grant-opportunities-api-opportunitysearchresponse-example/)
+- [Grants Api Agencyawardsummary Example](https://apis.io/examples/us-african-development-foundation/grants-api-agencyawardsummary-example/)
+- [Grants Api Apierror Example](https://apis.io/examples/us-african-development-foundation/grants-api-apierror-example/)
+- [Grants Api Award Example](https://apis.io/examples/us-african-development-foundation/grants-api-award-example/)
+- [Grants Api Awardsearchrequest Example](https://apis.io/examples/us-african-development-foundation/grants-api-awardsearchrequest-example/)
+- [Grants Api Awardsearchresponse Example](https://apis.io/examples/us-african-development-foundation/grants-api-awardsearchresponse-example/)
+- [Grants Api Placeofperformance Example](https://apis.io/examples/us-african-development-foundation/grants-api-placeofperformance-example/)
+- [Grants Api Recipient Example](https://apis.io/examples/us-african-development-foundation/grants-api-recipient-example/)
+- [Grants Api Recipientsummary Example](https://apis.io/examples/us-african-development-foundation/grants-api-recipientsummary-example/)
+- [Grants Api Spendingbygeographyrequest Example](https://apis.io/examples/us-african-development-foundation/grants-api-spendingbygeographyrequest-example/)
+- [Grants Api Spendingbygeographyresponse Example](https://apis.io/examples/us-african-development-foundation/grants-api-spendingbygeographyresponse-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [USADF Grant Opportunities Agency API](https://apis.io/collections/us-african-development-foundation/open-us-african-development-foundation-agency-api/)
+- [USADF Grant Opportunities Agency Awards API](https://apis.io/collections/us-african-development-foundation/open-us-african-development-foundation-awards-api/)
+- [USADF Grant Agency Opportunities API](https://apis.io/collections/us-african-development-foundation/open-us-african-development-foundation-opportunities-api/)
+- [USADF Grant Opportunities Agency Recipients API](https://apis.io/collections/us-african-development-foundation/open-us-african-development-foundation-recipients-api/)
+- [USADF Grant Opportunities Agency Spending API](https://apis.io/collections/us-african-development-foundation/open-us-african-development-foundation-spending-api/)
+- [USADF Grant Opportunities API](https://apis.io/collections/us-african-development-foundation/open-usadf-grant-opportunities-api/)
+- [USADF Grants Data API](https://apis.io/collections/us-african-development-foundation/open-usadf-grants-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [US African Development Foundation — jsonschema rules](https://apis.io/rules/us-african-development-foundation/us-african-development-foundation-jsonschema-spectral-rules/)
+- [US African Development Foundation API Rules](https://apis.io/rules/us-african-development-foundation/us-african-development-foundation-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Us African Development Foundation Domain Security](https://apis.io/security/us-african-development-foundation/us-african-development-foundation-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Us African Development Foundation Plans Pricing](https://apis.io/plans/us-african-development-foundation/us-african-development-foundation-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Us African Development Foundation Rate Limits](https://apis.io/rate-limits/us-african-development-foundation/us-african-development-foundation-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Us African Development Foundation Finops](https://apis.io/finops/us-african-development-foundation/us-african-development-foundation-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.usadf.gov)
-- [Portal](https://www.usaspending.gov/agency/african-development-foundation)
-- [Data A P I](https://api.usaspending.gov)
-- [Data A P I](https://www.grants.gov/search-grants?agencyCode=ADF)
-- [GitHub Organization](https://github.com/usadf)
-- [JSON-LD](json-ld/us-african-development-foundation-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/us-african-development-foundation-spectral-rules.yml)
-- [Vocabulary](vocabulary/us-african-development-foundation-vocabulary.yaml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [Blog](https://www.usadf.gov/news)
+- [GitHub](https://github.com/usadf)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 23.4** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 27.5 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 7.9 |
+
+**Agent readiness 26.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/us-african-development-foundation/](https://apis.io/providers/us-african-development-foundation/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for US African Development Foundation: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/us-african-development-foundation/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
